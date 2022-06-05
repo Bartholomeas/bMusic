@@ -1,11 +1,12 @@
 import React from 'react';
 import Timer from '../Timer/Timer';
+import volumeIcon from '../../../assets/volumeIcon.svg';
 
-const Bar = () => {
+const Bar: React.FC<{ isVolume?: true | false }> = ({ isVolume = false }) => {
 	return (
-		<div className='relative w-full h-[5px] rounded-full  bg-primaryPastel'>
-			<span className='absolute top-0 left-0 w-[200px] rounded-full h-full bg-primary'>
-				<Timer classContent='absolute top-[3px] right-0' time={10} />
+		<div className=" 'w-full h-[10px] relative bar rounded-full bg-primaryPastel" aria-label='Progress bar of song'>
+			<span className='w-[200px] h-full absolute  left-0 rounded-full bg-primary'>
+				<Timer classContent='absolute top-[10px] right-0' time={10} />
 			</span>
 		</div>
 	);

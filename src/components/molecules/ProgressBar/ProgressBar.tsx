@@ -6,8 +6,7 @@ const ProgressBar = () => {
 	return (
 		<div className='h-[3rem] w-full'>
 			<Timer time={120} />
-			<Bar />
-			{/* <Timer time={0} /> */}
+			<Bar isVolume={false} />
 		</div>
 	);
 };

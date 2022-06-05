@@ -12,7 +12,7 @@ const ButtonsPanel: React.FC = () => {
 		<div className='flex justify-between gap-1 items-center w-full'>
 			<PlayerButton additionalClass='h-[20px]' btnType={random} />
 			<PlayerButton btnType={prev} />
-			<PlayButton />
+			<PlayButton songState='stop' />
 			<PlayerButton btnType={next} />
 			<PlayerButton additionalClass='h-[20px]' btnType={loop} />
 		</div>

@@ -26,10 +26,10 @@ module.exports = {
 		// 	DEFAULT: '16px',
 		// },
 		fontSize: {
-			xs: '0.8rem',
-			s: '1.6rem',
-			m: '2rem',
-			l: '2.4rem',
+			xs: '8px',
+			sm: '16px',
+			md: '20px',
+			lg: '24px',
 		},
 		extend: {
 			colors: {
