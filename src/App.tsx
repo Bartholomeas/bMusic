@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import PlayerBody from './components/organisms/PlayerBody/PlayerBody';
 
 const App: React.FC = () => {
