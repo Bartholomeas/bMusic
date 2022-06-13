@@ -6,7 +6,6 @@ import { ACTIONS } from '../../../hooks/actions';
 
 const PlayButton: React.FC<{ toggleSongStatus: () => any }> = ({ toggleSongStatus }) => {
 	const { songState, dispatch } = usePlayerHandler();
-	console.log(songState.songStatus);
 
 	return (
 		<button

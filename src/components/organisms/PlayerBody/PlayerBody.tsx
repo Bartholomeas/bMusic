@@ -1,4 +1,3 @@
-import React, { useReducer } from 'react';
 import ImageBox from '../../atoms/ImageBox/ImageBox';
 import ButtonsPanel from '../../molecules/ButtonsPanel/ButtonsPanel';
 import InfoBox from '../../molecules/InfoBox/InfoBox';

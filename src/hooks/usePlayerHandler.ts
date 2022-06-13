@@ -1,5 +1,7 @@
 import { useReducer } from 'react';
 import { ACTIONS } from './actions';
+import { songs } from '../songs';
+
 interface SongState {
 	songStatus: boolean;
 }
@@ -15,6 +17,7 @@ const initialState: SongState = {
 function songStatusReducer(songState: SongState, action: SongAction) {
 	switch (action.type) {
 		case ACTIONS.TOGGLE_SONG:
+			console.log(songs[0]);
 			// console.log(songState);
 			return { songStatus: !songState.songStatus };
 		default:

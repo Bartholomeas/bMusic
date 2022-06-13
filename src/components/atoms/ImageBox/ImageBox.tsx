@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../../../assets/kendrick.jpeg';
+import img from '../../../assets/images/kendrick.jpeg';
 
 const ImageBox: React.FC = () => {
 	return (

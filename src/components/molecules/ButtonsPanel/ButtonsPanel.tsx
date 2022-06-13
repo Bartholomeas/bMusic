@@ -8,6 +8,7 @@ import loop from '../../../assets/loopButton.svg';
 import random from '../../../assets/randomButton.svg';
 import list from '../../../assets/listButton.svg';
 import volume from '../../../assets/volumeButton.svg';
+import { usePlayerHandler } from '../../../hooks/usePlayerHandler';
 
 // function reducer(state, action) {
 // 	switch (action.type) {
@@ -45,9 +46,9 @@ const initialState: SongState = {
 };
 
 const ButtonsPanel: React.FC = () => {
-	const [songState, dispatch] = useReducer(songStatusReducer, initialState);
+	const { songState, dispatch } = usePlayerHandler();
 
-	function songStatusReducer(songState: SongState, action) {
+	function songStatusReducer(songState: SongState, action: any) {
 		switch (action.type) {
 			case ACTIONS.TOGGLE_SONG:
 				console.log(songState);
