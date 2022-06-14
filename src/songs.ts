@@ -1,7 +1,7 @@
 import dieHardSong from './assets/mp3/diehard.mp3';
 import dieHardCover from './assets/images/kendrick.jpeg';
 
-interface Song {
+export interface SongInterface {
 	id: number;
 	title: string;
 	author: string;
@@ -9,7 +9,7 @@ interface Song {
 	source: string;
 }
 
-export const songs: Song[] = [
+export const songs: SongInterface[] = [
 	{
 		id: 1,
 		title: 'Die Hard',

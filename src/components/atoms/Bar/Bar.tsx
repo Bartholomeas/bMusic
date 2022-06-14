@@ -1,8 +1,7 @@
 import React from 'react';
 import Timer from '../Timer/Timer';
-import volumeIcon from '../../../assets/volumeIcon.svg';
 
-const Bar: React.FC<{ isVolume?: true | false }> = ({ isVolume = false }) => {
+const Bar: React.FC = () => {
 	return (
 		<div className=" 'w-full h-[10px] relative bar rounded-full bg-primaryPastel" aria-label='Progress bar of song'>
 			<span className='w-[200px] h-full absolute  left-0 rounded-full bg-primary'>
