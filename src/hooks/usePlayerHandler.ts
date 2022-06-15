@@ -1,8 +1,8 @@
-import { useReducer } from 'react';
+import { Dispatch, useReducer } from 'react';
 import { ACTIONS } from './actions';
 import { songs, SongInterface } from '../songs';
 
-interface SongState {
+export interface SongState {
 	songStatus: boolean;
 	index: number;
 	volume: number;
@@ -27,22 +27,25 @@ const initialState: SongState = {
 };
 
 function songStatusReducer(state: SongState, action: SongAction) {
-	function updateTime() {
-		// console.log(state);
-		return { ...state, elapsedTime: (state.elapsedTime += 1) };
-	}
+	// function updateTime() {
+	// 	// console.log(state);
+	// 	return { ...state, elapsedTime: (state.elapsedTime += 1) };
+	// }
 	switch (action.type) {
 		case ACTIONS.TOGGLE_SONG:
 			if (!state.songStatus) {
-				setInterval(updateTime, 1000);
-				// state.currentSong.play();
-				// console.log(currentSong.duration);
+				// setInterval(updateTime, 1000);
+				console.log(state.currentSong)
 			} else {
 				console.log('gra se tera');
 				// currentSong.pause();
 			}
 
 			return { ...state, songStatus: !state.songStatus };
+
+		// case ACTIONS.NEXT_SONG:
+		// 	console.log('to nextsong');
+		// 	break;
 		default:
 			throw new Error('ERROR');
 	}

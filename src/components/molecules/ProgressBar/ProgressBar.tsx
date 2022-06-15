@@ -3,9 +3,6 @@ import Timer from '../../atoms/Timer/Timer';
 import { usePlayerHandler } from '../../../hooks/usePlayerHandler';
 
 const ProgressBar = () => {
-	const { state, dispatch } = usePlayerHandler();
-	console.log(state);
-
 	return (
 		<div className='flex flex-col h-[3rem] w-full'>
 			<Timer classContent='self-end' time={122} />

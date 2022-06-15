@@ -1,3 +1,4 @@
 export const ACTIONS = {
-	TOGGLE_SONG: 'PLAY_SONG',
+	TOGGLE_SONG: 'TOGGLE_SONG',
+	NEXT_SONG: 'NEXT_SONG',
 };
