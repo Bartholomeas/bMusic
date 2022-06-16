@@ -7,8 +7,25 @@ import { usePlayerHandler } from '../../../hooks/usePlayerHandler';
 
 const PlayerBody = () => {
 	const { state, dispatch } = usePlayerHandler();
-
 	const audioRef = useRef<HTMLAudioElement>(null);
+
+	let elapsedTime = 0;
+
+	let counterInterval: NodeJS.Timer;
+	function countTime(toggleInterval: boolean) {
+		console.log(toggleInterval);
+		toggleInterval
+			? (counterInterval = setInterval(() => {
+					elapsedTime++;
+					if (audioRef.current) console.log(Math.floor(audioRef.current.currentTime));
+			  }, 1000))
+			: clearInterval(counterInterval);
+	}
+	if (state.songStatus) {
+		countTime(true);
+	} else {
+		countTime(false);
+	}
 
 	return (
 		<div className='flex gap-2 flex-col justify-between items-center px-2 pb-3 pt-2  max-w-md w-full h-screen max-h-[600px]   backdrop-blur-md drop-shadow-standardShadow bg-backgroundSecond rounded-xl'>

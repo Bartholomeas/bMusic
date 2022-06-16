@@ -9,9 +9,7 @@ import random from '../../../assets/randomButton.svg';
 import list from '../../../assets/listButton.svg';
 import volume from '../../../assets/volumeButton.svg';
 import { usePlayerHandler, SongState } from '../../../hooks/usePlayerHandler';
-import { songs } from '../../../songs';
 
-// const { state, dispatch } = usePlayerHandler();
 const ButtonsPanel: React.FC<{
 	state: SongState;
 	dispatch: React.Dispatch<any>;
@@ -19,17 +17,18 @@ const ButtonsPanel: React.FC<{
 }> = ({ state, dispatch, audioRef }) => {
 	function toggleSong() {
 		dispatch({ type: ACTIONS.TOGGLE_SONG });
-		console.log(state);
 		if (!state.songStatus) {
-			console.log(audioRef.current?.currentTime);
 			audioRef.current?.play();
+			// console.log(state.songStatus);
 		} else {
 			audioRef.current?.pause();
 		}
 		return;
 	}
 
-	useEffect(() => {});
+	// useEffect(() => {
+	// 	console.log(audioRef.current?.currentTime);
+	// }, [Math.floor(audioRef.current?.currentTime)]);
 
 	return (
 		<div className='flex flex-col w-full h-auto'>

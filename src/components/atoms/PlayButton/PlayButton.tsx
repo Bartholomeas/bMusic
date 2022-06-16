@@ -1,11 +1,10 @@
 import React from 'react';
 import playBtn from '../../../assets/playButton.svg';
 import pauseBtn from '../../../assets/pauseButton.svg';
-import { usePlayerHandler, SongState } from '../../../hooks/usePlayerHandler';
+import { SongState } from '../../../hooks/usePlayerHandler';
 import { ACTIONS } from '../../../hooks/actions';
 
 const PlayButton: React.FC<{ state: SongState; reducerFunction: () => any }> = ({ state, reducerFunction }) => {
-	console.log(state.songStatus);
 	return (
 		<button
 			onClick={reducerFunction}
