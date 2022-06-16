@@ -2,12 +2,15 @@
 import Timer from '../../atoms/Timer/Timer';
 import { usePlayerHandler } from '../../../hooks/usePlayerHandler';
 
-const ProgressBar = () => {
+const ProgressBar: React.FC<{ audioDuration: number | undefined; elapsedTime: number }> = (
+	audioDuration,
+	elapsedTime
+) => {
 	return (
 		<div className='flex flex-col h-[3rem] w-full'>
 			<Timer classContent='self-end' time={122} />
 			<div className=" 'w-full h-[10px] relative bar rounded-full bg-primaryPastel" aria-label='Progress bar of song'>
-				<span className='w-[200px] h-full absolute  left-0 rounded-full bg-primary'>
+				<span className='w-[25%] h-full absolute  left-0 rounded-full bg-primary'>
 					<Timer classContent='absolute top-[10px] right-0' time={10} />
 				</span>
 			</div>

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import ImageBox from '../../atoms/ImageBox/ImageBox';
 import ButtonsPanel from '../../molecules/ButtonsPanel/ButtonsPanel';
 import InfoBox from '../../molecules/InfoBox/InfoBox';
@@ -10,21 +10,21 @@ const PlayerBody = () => {
 	const audioRef = useRef<HTMLAudioElement>(null);
 
 	let elapsedTime = 0;
-
-	let counterInterval: NodeJS.Timer;
-	function countTime(toggleInterval: boolean) {
-		console.log(toggleInterval);
-		toggleInterval
-			? (counterInterval = setInterval(() => {
-					elapsedTime++;
-					if (audioRef.current) console.log(Math.floor(audioRef.current.currentTime));
-			  }, 1000))
-			: clearInterval(counterInterval);
+	function countTime() {
+		if (audioRef.current) elapsedTime = Math.floor(audioRef.current.currentTime);
+		console.log(elapsedTime);
 	}
-	if (state.songStatus) {
-		countTime(true);
-	} else {
-		countTime(false);
+
+	let intervalId: NodeJS.Timer;
+	useEffect(() => {
+		intervalId = setInterval(countTime, 1000);
+		if (!state.songStatus) clearInterval(intervalId);
+		return () => clearInterval(intervalId);
+	}, [state.songStatus]);
+
+	const audioDuration = audioRef.current?.duration;
+	if (audioDuration) {
+		console.log(audioDuration);
 	}
 
 	return (
@@ -33,7 +33,7 @@ const PlayerBody = () => {
 			<ImageBox />
 			<InfoBox />
 			<ButtonsPanel state={state} dispatch={dispatch} audioRef={audioRef} />
-			<ProgressBar />
+			<ProgressBar audioDuration={audioDuration} elapsedTime={elapsedTime} />
 		</div>
 	);
 };
