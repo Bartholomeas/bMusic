@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from 'react';
+import { RefObject } from 'react';
 import { ACTIONS } from '../../../hooks/actions';
 import PlayButton from '../../atoms/PlayButton/PlayButton';
 import PlayerButton from '../../atoms/PlayerButton/PlayerButton';
@@ -8,7 +8,7 @@ import loop from '../../../assets/loopButton.svg';
 import random from '../../../assets/randomButton.svg';
 import list from '../../../assets/listButton.svg';
 import volume from '../../../assets/volumeButton.svg';
-import { usePlayerHandler, SongState } from '../../../hooks/usePlayerHandler';
+import { SongState } from '../../../hooks/usePlayerHandler';
 
 const ButtonsPanel: React.FC<{
 	state: SongState;
@@ -25,10 +25,6 @@ const ButtonsPanel: React.FC<{
 		}
 		return;
 	}
-
-	// useEffect(() => {
-	// 	console.log(audioRef.current?.currentTime);
-	// }, [Math.floor(audioRef.current?.currentTime)]);
 
 	return (
 		<div className='flex flex-col w-full h-auto'>

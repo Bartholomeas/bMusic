@@ -1,4 +1,4 @@
-import { Dispatch, useEffect, useReducer } from 'react';
+import { useReducer } from 'react';
 import { ACTIONS } from './actions';
 import { songs, SongInterface } from '../songs';
 
