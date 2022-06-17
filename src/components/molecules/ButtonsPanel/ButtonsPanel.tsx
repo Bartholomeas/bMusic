@@ -8,13 +8,9 @@ import loop from '../../../assets/loopButton.svg';
 import random from '../../../assets/randomButton.svg';
 import list from '../../../assets/listButton.svg';
 import volume from '../../../assets/volumeButton.svg';
-import { SongState } from '../../../hooks/usePlayerHandler';
+import { RefReducerPack } from '../../../hooks/usePlayerHandler';
 
-const ButtonsPanel: React.FC<{
-	state: SongState;
-	dispatch: React.Dispatch<any>;
-	audioRef: RefObject<HTMLAudioElement>;
-}> = ({ state, dispatch, audioRef }) => {
+const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 	function toggleSong() {
 		dispatch({ type: ACTIONS.TOGGLE_SONG });
 		if (!state.songStatus) {

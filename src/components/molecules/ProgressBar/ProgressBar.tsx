@@ -1,18 +1,44 @@
-// import Bar from '../../atoms/Bar/Bar';
+import { useEffect, useState, RefObject } from 'react';
 import Timer from '../../atoms/Timer/Timer';
+import { usePlayerHandler, RefReducerPack } from '../../../hooks/usePlayerHandler';
 
-const ProgressBar: React.FC<{ audioDuration?: number; elapsedTime?: number }> = ({
-	audioDuration = 0,
-	elapsedTime = 0,
-}) => {
-	// console.log(typeof elapsedTime);
+export interface SongTime {
+	elapsedTime?: number;
+	durationTime?: number;
+}
+const initialState: SongTime = {
+	elapsedTime: 0,
+	durationTime: 0,
+};
+
+// const ProgressBar: React.FC<{ timeData: SongTime; audioRef: RefObject<HTMLAudioElement> }> = ({
+// 	timeData: { elapsedTime = 0, durationTime = 0 },
+const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
+	// const { state, dispatch } = usePlayerHandler();
+	const [timeData, setTimeData] = useState<SongTime>(initialState);
+	// console.log(timeData);
+
+	function countTime() {
+		if (audioRef.current) setTimeData({ ...timeData, elapsedTime: Math.floor(audioRef.current!.currentTime) });
+		if (timeData.durationTime === 0) {
+			setTimeData({ ...timeData, durationTime: Math.floor(audioRef.current?.duration!) });
+		}
+		console.log(timeData);
+	}
+
+	let intervalId: NodeJS.Timer;
+	useEffect(() => {
+		intervalId = setInterval(countTime, 1000);
+		if (!state.songStatus) clearInterval(intervalId);
+		return () => clearInterval(intervalId);
+	}, [state.songStatus, timeData]);
 
 	return (
 		<div className='flex flex-col h-[3rem] w-full'>
-			<Timer classContent='self-end' time={Math.floor(audioDuration)} />
-			<div className='w-full h-[10px] relative bar rounded-full bg-primaryPastel' aria-label='Progress bar of song'>
-				<span className='w-[25%] h-full absolute  left-0 rounded-full bg-primary'>
-					<Timer classContent='absolute top-[10px] right-0' time={Math.floor(elapsedTime)} />
+			<Timer classContent='self-end' time={timeData.durationTime!} />
+			<div className='relative w-full h-[10px] bar rounded-full bg-primaryPastel' aria-label='Progress bar of song'>
+				<span className={`w-[50%] h-full absolute left-[0] rounded-full bg-primary`}>
+					<Timer classContent='absolute top-[10px] right-0' time={timeData.elapsedTime!} />
 				</span>
 			</div>
 		</div>

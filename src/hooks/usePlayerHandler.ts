@@ -1,7 +1,12 @@
-import { useReducer } from 'react';
+import { useReducer, RefObject } from 'react';
 import { ACTIONS } from './actions';
 import { songs, SongInterface } from '../songs';
 
+export interface RefReducerPack {
+	state: SongState;
+	dispatch: React.Dispatch<any>;
+	audioRef: RefObject<HTMLAudioElement>;
+}
 export interface SongState {
 	songStatus: boolean;
 	id: number;
