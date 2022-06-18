@@ -17,6 +17,8 @@ import { usePlayerHandler } from '../../../hooks/usePlayerHandler';
 const PlayerBody = () => {
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const { state, dispatch } = usePlayerHandler();
+
+	// audioRef.current?.setAttribute(className, 'Toklasajakasjest');
 	// const [timeData, setTimeData] = useState<SongTime>(initialState);
 
 	// function countTime() {
