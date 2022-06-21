@@ -4,7 +4,7 @@ import Title from '../../atoms/Title/Title';
 
 const InfoBox = () => {
 	return (
-		<div className=' w-full h-auto text-center          '>
+		<div className=' w-full h-auto text-center'>
 			<Title />
 			<Author />
 		</div>

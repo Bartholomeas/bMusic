@@ -19,7 +19,6 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 		if (timeData.durationTime === 0) {
 			setTimeData({ ...timeData, durationTime: Math.floor(audioRef.current?.duration!) });
 		}
-		// console.log(timeData);
 	}
 
 	let intervalId: NodeJS.Timer;
@@ -29,15 +28,13 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 		return () => clearInterval(intervalId);
 	}, [state.songStatus, timeData]);
 
-	console.log(timeData.elapsedTime, timeData.durationTime);
-
 	let barProgress = (timeData.elapsedTime! / timeData.durationTime!) * 100;
 	return (
 		<div className='flex flex-col h-[3rem] w-full'>
 			<Timer classContent='self-end' time={timeData.durationTime} />
-			<div className='relative w-full h-[10px] bar rounded-full bg-primaryPastel' aria-label='Progress bar of song'>
-				<span style={{ width: `${barProgress}%` }} className={`h-full absolute left-[0] rounded-full bg-primary`}>
-					<Timer classContent='absolute top-[10px] right-0' time={timeData.elapsedTime!} />
+			<div className='relative w-full h-[10px] bar rounded-full bg-primaryPastel ' aria-label='Progress bar of song'>
+				<span style={{ width: `${barProgress}%` }} className={`h-full absolute left-[1px] rounded-full bg-primary`}>
+					<Timer classContent='absolute top-[10px] right-0  translate-x-[100%]' time={timeData.elapsedTime!} />
 				</span>
 			</div>
 		</div>

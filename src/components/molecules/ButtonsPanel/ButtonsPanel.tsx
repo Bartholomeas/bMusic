@@ -13,13 +13,17 @@ import { RefReducerPack } from '../../../hooks/usePlayerHandler';
 const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 	function toggleSong() {
 		dispatch({ type: ACTIONS.TOGGLE_SONG });
+		console.log('test');
 		if (!state.songStatus) {
 			audioRef.current?.play();
-			// console.log(state.songStatus);
 		} else {
 			audioRef.current?.pause();
 		}
 		return;
+	}
+
+	function nextSong() {
+		dispatch({ type: ACTIONS.NEXT_SONG });
 	}
 
 	return (
@@ -32,7 +36,7 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 				<PlayerButton additionalClass='h-[20px]' btnType={random} />
 				<PlayerButton btnType={prev} />
 				<PlayButton state={state} reducerFunction={() => toggleSong()} />
-				<PlayerButton btnType={next} />
+				<PlayerButton state={state} reducerFunction={() => nextSong()} btnType={next} />
 				<PlayerButton additionalClass='h-[20px]' btnType={loop} />
 			</div>
 		</div>
