@@ -3,12 +3,13 @@ import dieHardCover from './assets/images/kendrick.jpeg';
 import hotlineBlingSong from './assets/mp3/hotlinebling.mp3';
 import hotlineBlingCover from './assets/images/drake.jpeg';
 
+type SongSource = string | null;
 export interface SongInterface {
 	id: number;
 	title: string;
 	author: string;
 	image: string;
-	source: string;
+	source: SongSource;
 }
 
 export const songs: SongInterface[] = [

@@ -24,6 +24,7 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 
 	function nextSong() {
 		dispatch({ type: ACTIONS.NEXT_SONG });
+		// console.log('uzytke1');
 	}
 
 	return (
