@@ -2,6 +2,8 @@ import dieHardSong from './assets/mp3/diehard.mp3';
 import dieHardCover from './assets/images/kendrick.jpeg';
 import hotlineBlingSong from './assets/mp3/hotlinebling.mp3';
 import hotlineBlingCover from './assets/images/drake.jpeg';
+import sexybackSong from './assets/mp3/sexyback.mp3';
+import sexybackCover from './assets/images/timberlake.jpeg';
 
 type SongSource = string | null;
 export interface SongInterface {
@@ -26,5 +28,12 @@ export const songs: SongInterface[] = [
 		author: 'Drake',
 		image: hotlineBlingCover,
 		source: hotlineBlingSong,
+	},
+	{
+		id: 2,
+		title: 'SexyBack',
+		author: 'Justin Timberlake & Timbaland',
+		image: sexybackCover,
+		source: sexybackSong,
 	},
 ];

@@ -9,16 +9,11 @@ const PlayerBody = () => {
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const { state, dispatch } = usePlayerHandler();
 
-	// console.log(state.currentSong.source);
-
-	{
-		console.log(state.currentSong.source);
-	}
 	return (
 		<div className='flex gap-1 flex-col justify-between items-center px-2 pb-3 pt-2  max-w-sm w-full h-screen max-h-[650px] backdrop-blur-md drop-shadow-standardShadow bg-backgroundSecond rounded-xl'>
 			<audio src={state.currentSong.source ? state.currentSong.source : ''} ref={audioRef}></audio>
-			<ImageBox />
-			<InfoBox />
+			<ImageBox coverImg={state.currentSong.image} />
+			<InfoBox author={state.currentSong.author} title={state.currentSong.title} />
 			<ButtonsPanel state={state} dispatch={dispatch} audioRef={audioRef} />
 			<ProgressBar state={state} dispatch={dispatch} audioRef={audioRef} />
 		</div>

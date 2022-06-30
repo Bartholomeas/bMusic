@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Author = () => {
-	return <h2 className='text-primaryOff'>Kendrick Lamar</h2>;
+const Author: React.FC<{ author: string }> = ({ author = '' }) => {
+	return <h2 className='text-primaryOff'>{author}</h2>;
 };
 
 export default Author;

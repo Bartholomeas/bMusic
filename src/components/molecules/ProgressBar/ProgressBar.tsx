@@ -16,7 +16,7 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 
 	function countTime() {
 		if (audioRef.current) setTimeData({ ...timeData, elapsedTime: Math.floor(audioRef.current!.currentTime) });
-		if (timeData.durationTime === 0) {
+		if (timeData.durationTime === 0 || timeData.durationTime !== Math.floor(audioRef.current?.duration!)) {
 			setTimeData({ ...timeData, durationTime: Math.floor(audioRef.current?.duration!) });
 		}
 	}
@@ -26,7 +26,7 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 		intervalId = setInterval(countTime, 1000);
 		if (!state.songStatus) clearInterval(intervalId);
 		return () => clearInterval(intervalId);
-	}, [state.songStatus, timeData]);
+	}, [state.songStatus, timeData, audioRef.current?.duration]);
 
 	let barProgress = (timeData.elapsedTime! / timeData.durationTime!) * 100;
 	return (

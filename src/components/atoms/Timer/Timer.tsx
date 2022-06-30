@@ -5,6 +5,6 @@ const Timer: React.FC<{ time: number; classContent: string }> = ({ time = 0, cla
 	const seconds = Math.floor(time % 60);
 	// console.log(time);
 
-	return <p className={classContent}> {`${minutes}:${seconds}`}</p>;
+	return <p className={classContent}> {`0${minutes}:${seconds < 10 ? '0' : ''}${seconds}`}</p>;
 };
 export default Timer;
