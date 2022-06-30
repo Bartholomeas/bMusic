@@ -12,6 +12,7 @@ export interface SongState {
 	id: number;
 	volume: number;
 	currentSong: SongInterface;
+	songIndex: number;
 	// durationTime: number;
 	// elapsedTime: number;
 }
@@ -22,32 +23,40 @@ interface SongAction {
 
 const initialState: SongState = {
 	songStatus: false,
+	songIndex: 0,
 	id: songs[0].id,
 	volume: 50,
 	currentSong: songs[0],
 	// durationTime: songs[0],
 };
 
-// console.log(songs.length);
-let songIndex: number = 0;
 function songStatusReducer(state: SongState, action: SongAction) {
-	console.log('state', state);
-	console.log('action', action);
-	console.log(songIndex);
 	switch (action.type) {
 		case ACTIONS.TOGGLE_SONG:
 			return { ...state, songStatus: !state.songStatus };
 
 		case ACTIONS.NEXT_SONG:
-			// if (songIndex >= songs.length) {
-			// 	songIndex = 0;
-			// } else {
-			// 	songIndex++;
-			// }
-			songIndex++;
-			// console.log(state.currentSong);
-			return { ...state, volume: 40 };
-		// return { ...state, currentSong: songs[songIndex] };
+			if (state.songIndex >= songs.length - 1) {
+				console.log(songs[state.songIndex + 1]);
+				return {
+					...state,
+					songStatus: false,
+					songIndex: 0,
+					id: songs[0].id,
+					volume: 50,
+					currentSong: songs[state.songIndex + 1],
+				};
+			} else {
+				console.log(state);
+				return {
+					...state,
+					songStatus: false,
+					songIndex: 0,
+					id: songs[state.songIndex + 1].id,
+					volume: 50,
+					currentSong: songs[state.songIndex + 1],
+				};
+			}
 
 		default:
 			throw new Error('ERROR');
