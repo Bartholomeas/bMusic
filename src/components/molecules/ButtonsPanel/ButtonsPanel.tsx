@@ -23,6 +23,10 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 
 	function nextSong() {
 		dispatch({ type: ACTIONS.NEXT_SONG });
+		console.log(state);
+	}
+	function prevSong() {
+		dispatch({ type: ACTIONS.PREV_SONG });
 	}
 
 	return (
@@ -33,7 +37,7 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 			</div>
 			<div className='flex justify-between gap-1 items-center w-full'>
 				<PlayerButton additionalClass='h-[20px]' btnType={random} />
-				<PlayerButton btnType={prev} />
+				<PlayerButton btnType={prev} reducerFunction={() => prevSong()} />
 				<PlayButton state={state} reducerFunction={() => toggleSong()} />
 				<PlayerButton state={state} reducerFunction={() => nextSong()} btnType={next} />
 				<PlayerButton additionalClass='h-[20px]' btnType={loop} />

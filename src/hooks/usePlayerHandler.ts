@@ -37,24 +37,43 @@ function songStatusReducer(state: SongState, action: SongAction) {
 
 		case ACTIONS.NEXT_SONG:
 			if (state.songIndex >= songs.length - 1) {
-				console.log(songs[state.songIndex + 1]);
 				return {
 					...state,
 					songStatus: false,
 					songIndex: 0,
 					id: songs[0].id,
 					volume: 50,
-					currentSong: songs[state.songIndex + 1],
+					currentSong: songs[0],
 				};
 			} else {
-				console.log(state);
 				return {
 					...state,
 					songStatus: false,
-					songIndex: 0,
+					songIndex: state.songIndex + 1,
 					id: songs[state.songIndex + 1].id,
 					volume: 50,
 					currentSong: songs[state.songIndex + 1],
+				};
+			}
+
+		case ACTIONS.PREV_SONG:
+			if (state.songIndex === 0) {
+				return {
+					...state,
+					songStatus: false,
+					songIndex: songs.length - 1,
+					id: songs[songs.length - 1].id,
+					volume: 50,
+					currentSong: songs[songs.length - 1],
+				};
+			} else {
+				return {
+					...state,
+					songStatus: false,
+					songIndex: state.songIndex - 1,
+					id: songs[state.songIndex - 1].id,
+					volume: 50,
+					currentSong: songs[state.songIndex - 1],
 				};
 			}
 

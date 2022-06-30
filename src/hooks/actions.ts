@@ -1,4 +1,5 @@
 export const ACTIONS = {
 	TOGGLE_SONG: 'TOGGLE_SONG',
 	NEXT_SONG: 'NEXT_SONG',
+	PREV_SONG: 'PREV_SONG',
 };
