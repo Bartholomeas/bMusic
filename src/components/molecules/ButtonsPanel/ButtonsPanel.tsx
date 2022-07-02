@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+import React, { useState } from 'react';
 import { ACTIONS } from '../../../hooks/actions';
 import PlayButton from '../../atoms/PlayButton/PlayButton';
 import PlayerButton from '../../atoms/PlayerButton/PlayerButton';
@@ -11,6 +11,9 @@ import volume from '../../../assets/volumeButton.svg';
 import { RefReducerPack } from '../../../hooks/usePlayerHandler';
 
 const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+	if (audioRef.current) audioRef.current!.volume = 1;
+	console.log(audioRef.current);
 	function toggleSong() {
 		dispatch({ type: ACTIONS.TOGGLE_SONG });
 		if (!state.songStatus) {
@@ -29,10 +32,23 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 		dispatch({ type: ACTIONS.PREV_SONG });
 	}
 
+	function toggleVolume() {
+		setIsOpen(!isOpen);
+		console.log(isOpen);
+	}
+	function handleVolume(e: any) {
+		if (audioRef.current) audioRef.current!.volume = e.target.value / 100;
+	}
 	return (
 		<div className='flex flex-col w-full h-auto'>
 			<div className='flex justify-between'>
-				<PlayerButton additionalClass='h-[20px]' btnType={volume} />
+				<PlayerButton
+					additionalClass='volume h-[20px]'
+					btnType={volume}
+					reducerFunction={() => toggleVolume()}
+					volumeFunction={e => handleVolume(e)}
+					isOpen={isOpen}
+				/>
 				<PlayerButton additionalClass='h-[20px]' btnType={list} />
 			</div>
 			<div className='flex justify-between gap-1 items-center w-full'>

@@ -6,8 +6,8 @@ import ProgressBar from '../../molecules/ProgressBar/ProgressBar';
 import { usePlayerHandler } from '../../../hooks/usePlayerHandler';
 
 const PlayerBody = () => {
-	const audioRef = useRef<HTMLAudioElement>(null);
 	const { state, dispatch } = usePlayerHandler();
+	const audioRef = useRef<HTMLAudioElement>(null);
 
 	return (
 		<div className='flex gap-1 flex-col justify-between items-center px-2 pb-3 pt-2  max-w-sm w-full h-screen max-h-[650px] backdrop-blur-md drop-shadow-standardShadow bg-backgroundSecond rounded-xl'>
