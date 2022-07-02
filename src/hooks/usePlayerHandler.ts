@@ -25,7 +25,7 @@ const initialState: SongState = {
 	songStatus: false,
 	songIndex: 0,
 	id: songs[0].id,
-	volume: 50,
+	volume: 1,
 	currentSong: songs[0],
 	// durationTime: songs[0],
 };
@@ -42,7 +42,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					songStatus: false,
 					songIndex: 0,
 					id: songs[0].id,
-					volume: 50,
+					volume: 1,
 					currentSong: songs[0],
 				};
 			} else {
@@ -51,7 +51,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					songStatus: false,
 					songIndex: state.songIndex + 1,
 					id: songs[state.songIndex + 1].id,
-					volume: 50,
+					volume: 1,
 					currentSong: songs[state.songIndex + 1],
 				};
 			}
@@ -63,7 +63,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					songStatus: false,
 					songIndex: songs.length - 1,
 					id: songs[songs.length - 1].id,
-					volume: 50,
+					volume: 1,
 					currentSong: songs[songs.length - 1],
 				};
 			} else {
@@ -72,12 +72,15 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					songStatus: false,
 					songIndex: state.songIndex - 1,
 					id: songs[state.songIndex - 1].id,
-					volume: 50,
+					volume: 1,
 					currentSong: songs[state.songIndex - 1],
 				};
 			}
 		case ACTIONS.LOOP_SONG:
 			return { ...state };
+
+		case ACTIONS.CHANGE_VOLUME:
+			return { ...state, volume: action.payload };
 
 		default:
 			throw new Error('ERROR');

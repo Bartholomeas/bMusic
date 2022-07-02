@@ -15,6 +15,16 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 	const [timeData, setTimeData] = useState<SongTime>(initialState);
 	const [barProgress, setBarProgress] = useState<number>(0);
 
+	function updateProgress(e: any) {
+		let barTargetPercent = Math.floor((e.nativeEvent.offsetX / e.target.closest('div').offsetWidth) * 100);
+		setBarProgress(barTargetPercent);
+
+		// console.log(state);
+		// USTAWIANIE KLIKNIETEGO CZASU
+		countTime();
+		setTimeData({ ...timeData, elapsedTime: Math.floor(timeData.durationTime * (barTargetPercent / 100)) });
+		if (audioRef.current) audioRef.current!.currentTime = Math.floor(timeData.durationTime * (barTargetPercent / 100));
+	}
 	function countTime() {
 		if (audioRef.current) setTimeData({ ...timeData, elapsedTime: Math.floor(audioRef.current!.currentTime) });
 		if (timeData.durationTime === 0 || timeData.durationTime !== Math.floor(audioRef.current?.duration!)) {
@@ -29,16 +39,6 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 		if (!state.songStatus) clearInterval(intervalId);
 		return () => clearInterval(intervalId);
 	}, [state.songStatus, timeData, audioRef.current?.duration]);
-
-	function updateProgress(e: any) {
-		let barTargetPercent = Math.floor((e.nativeEvent.offsetX / e.target.closest('div').offsetWidth) * 100);
-		setBarProgress(barTargetPercent);
-
-		// USTAWIANIE KLIKNIETEGO CZASU
-		setTimeData({ ...timeData, elapsedTime: Math.floor(timeData.durationTime * (barTargetPercent / 100)) });
-		if (audioRef.current) audioRef.current!.currentTime = timeData.elapsedTime;
-		// console.log(timeData.elapsedTime);
-	}
 
 	return (
 		<div className='flex flex-col h-[3rem] w-full'>

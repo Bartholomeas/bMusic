@@ -12,7 +12,7 @@ import { RefReducerPack } from '../../../hooks/usePlayerHandler';
 
 const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
-	if (audioRef.current) audioRef.current!.volume = 1;
+	// if (audioRef.current) audioRef.current!.volume = 1;
 	function toggleSong() {
 		dispatch({ type: ACTIONS.TOGGLE_SONG });
 		if (!state.songStatus) {
@@ -35,6 +35,7 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 	}
 	function handleVolume(e: any) {
 		if (audioRef.current) audioRef.current!.volume = e.target.value / 100;
+		dispatch({ type: ACTIONS.CHANGE_VOLUME, payload: e.target.value / 100 });
 	}
 
 	function loopSong() {
