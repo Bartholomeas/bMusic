@@ -1,4 +1,5 @@
 import { SongState } from '../../../hooks/usePlayerHandler';
+import styles from './PlayerButton.module.css';
 
 const PlayerButton: React.FC<{
 	state?: SongState;
@@ -19,9 +20,9 @@ const PlayerButton: React.FC<{
 					type='range'
 					min={0}
 					max={100}
-					className={`top-[50%] w-[80%] left-[0px] ${
-						isOpen ? 'scale-x-[100%]' : 'scale-x-0'
-					} transition-transform origin-left`}
+					className={`top-[50%] w-[80%] left-[0px] ${isOpen ? 'scale-x-[100%]' : 'scale-x-0'} ${
+						styles.volumeInput
+					} transition-transform origin-left w-full h-[5px]  bg-primary rounded cursor-pointer appearance-none`}
 				/>
 			) : null}
 		</>

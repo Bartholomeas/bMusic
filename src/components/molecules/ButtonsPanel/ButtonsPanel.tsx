@@ -13,7 +13,6 @@ import { RefReducerPack } from '../../../hooks/usePlayerHandler';
 const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	if (audioRef.current) audioRef.current!.volume = 1;
-	console.log(audioRef.current);
 	function toggleSong() {
 		dispatch({ type: ACTIONS.TOGGLE_SONG });
 		if (!state.songStatus) {
@@ -26,7 +25,6 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 
 	function nextSong() {
 		dispatch({ type: ACTIONS.NEXT_SONG });
-		console.log(state);
 	}
 	function prevSong() {
 		dispatch({ type: ACTIONS.PREV_SONG });
@@ -34,14 +32,13 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 
 	function toggleVolume() {
 		setIsOpen(!isOpen);
-		console.log(isOpen);
 	}
 	function handleVolume(e: any) {
 		if (audioRef.current) audioRef.current!.volume = e.target.value / 100;
 	}
 	return (
 		<div className='flex flex-col w-full h-auto'>
-			<div className='flex justify-between'>
+			<div className='flex justify-between items-center'>
 				<PlayerButton
 					additionalClass='volume h-[20px]'
 					btnType={volume}
