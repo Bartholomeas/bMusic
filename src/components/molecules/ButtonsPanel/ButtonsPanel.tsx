@@ -36,6 +36,11 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 	function handleVolume(e: any) {
 		if (audioRef.current) audioRef.current!.volume = e.target.value / 100;
 	}
+
+	function loopSong() {
+		dispatch({ type: ACTIONS.LOOP_SONG });
+	}
+
 	return (
 		<div className='flex flex-col w-full h-auto'>
 			<div className='flex justify-between items-center'>
@@ -43,7 +48,7 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 					additionalClass='volume h-[20px]'
 					btnType={volume}
 					reducerFunction={() => toggleVolume()}
-					volumeFunction={e => handleVolume(e)}
+					additionalFunction={e => handleVolume(e)}
 					isOpen={isOpen}
 				/>
 				<PlayerButton additionalClass='h-[20px]' btnType={list} />

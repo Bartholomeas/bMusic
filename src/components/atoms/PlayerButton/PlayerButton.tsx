@@ -5,10 +5,10 @@ const PlayerButton: React.FC<{
 	state?: SongState;
 	btnType: string;
 	reducerFunction?: () => any;
-	volumeFunction?: (e: any) => void;
+	additionalFunction?: (e: any) => void;
 	additionalClass?: string;
 	isOpen?: boolean;
-}> = ({ btnType, state, reducerFunction, volumeFunction, additionalClass, isOpen = false }) => {
+}> = ({ btnType, state, reducerFunction, additionalFunction, additionalClass, isOpen = false }) => {
 	return (
 		<>
 			<button onClick={reducerFunction} className={`p-1 transition-transform ease  hover:scale-90 `}>
@@ -16,7 +16,7 @@ const PlayerButton: React.FC<{
 			</button>
 			{additionalClass === 'volume h-[20px]' ? (
 				<input
-					onChange={volumeFunction}
+					onChange={additionalFunction}
 					type='range'
 					min={0}
 					max={100}

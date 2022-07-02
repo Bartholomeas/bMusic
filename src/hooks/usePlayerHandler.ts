@@ -76,6 +76,8 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					currentSong: songs[state.songIndex - 1],
 				};
 			}
+		case ACTIONS.LOOP_SONG:
+			return { ...state };
 
 		default:
 			throw new Error('ERROR');
