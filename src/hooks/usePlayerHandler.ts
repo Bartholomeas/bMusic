@@ -13,6 +13,8 @@ export interface SongState {
 	volume: number;
 	currentSong: SongInterface;
 	songIndex: number;
+	onLoop: boolean;
+	isRandom: boolean;
 	// durationTime: number;
 	// elapsedTime: number;
 }
@@ -27,6 +29,8 @@ const initialState: SongState = {
 	id: songs[0].id,
 	volume: 1,
 	currentSong: songs[0],
+	onLoop: false,
+	isRandom: false,
 	// durationTime: songs[0],
 };
 
@@ -60,7 +64,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			if (state.songIndex === 0) {
 				return {
 					...state,
-					songStatus: false,
+					songStatus: true,
 					songIndex: songs.length - 1,
 					id: songs[songs.length - 1].id,
 					volume: 1,
@@ -69,7 +73,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			} else {
 				return {
 					...state,
-					songStatus: false,
+					songStatus: true,
 					songIndex: state.songIndex - 1,
 					id: songs[state.songIndex - 1].id,
 					volume: 1,
@@ -77,7 +81,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 				};
 			}
 		case ACTIONS.LOOP_SONG:
-			return { ...state };
+			return { ...state, onLoop: !state.onLoop };
 
 		case ACTIONS.CHANGE_VOLUME:
 			return { ...state, volume: action.payload };

@@ -1,8 +1,6 @@
 import React from 'react';
-import playBtn from '../../../assets/playButton.svg';
-import pauseBtn from '../../../assets/pauseButton.svg';
 import { SongState } from '../../../hooks/usePlayerHandler';
-import { ACTIONS } from '../../../hooks/actions';
+import { FaPlay, FaPause } from 'react-icons/fa';
 
 const PlayButton: React.FC<{ state: SongState; reducerFunction: () => any }> = ({ state, reducerFunction }) => {
 	return (
@@ -10,9 +8,9 @@ const PlayButton: React.FC<{ state: SongState; reducerFunction: () => any }> = (
 			onClick={reducerFunction}
 			className=' rounded-full p-2 bg-primaryDark transition-transform ease  hover:scale-90'>
 			{state.songStatus ? (
-				<img className='h-1.5' src={pauseBtn} alt='Przycisk start' />
+				<FaPause className='h-1.5 fill-backgroundSecond h-2 w-2' />
 			) : (
-				<img className='h-1.5' src={playBtn} alt='Przycisk start' />
+				<FaPlay className='h-1.5 fill-backgroundSecond h-2 w-2' />
 			)}
 		</button>
 	);

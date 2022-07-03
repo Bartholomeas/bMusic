@@ -3,17 +3,18 @@ import styles from './PlayerButton.module.css';
 
 const PlayerButton: React.FC<{
 	state?: SongState;
-	btnType: string;
+	BtnType: any;
 	reducerFunction?: () => any;
 	additionalFunction?: (e: any) => void;
 	additionalClass?: string;
 	isOpen?: boolean;
-}> = ({ btnType, state, reducerFunction, additionalFunction, additionalClass, isOpen = false }) => {
+}> = ({ BtnType, state, reducerFunction, additionalFunction, additionalClass, isOpen = false }) => {
 	return (
 		<>
-			<button onClick={reducerFunction} className={`p-1 transition-transform ease  hover:scale-90 `}>
-				<img className={`${additionalClass} relative`} src={btnType} alt='Przycisk poprzedni utwór' />
+			<button onClick={reducerFunction} className={`p-1 transition-transform ease hover:scale-90 `}>
+				<BtnType className={`fill-primaryDark h-3 w-[20px] ${additionalClass}`} />
 			</button>
+
 			{additionalClass === 'volume h-[20px]' ? (
 				<input
 					onChange={additionalFunction}
