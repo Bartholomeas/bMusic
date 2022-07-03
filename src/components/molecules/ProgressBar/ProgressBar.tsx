@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Timer from '../../atoms/Timer/Timer';
 import { usePlayerHandler, RefReducerPack } from '../../../hooks/usePlayerHandler';
+import { ACTIONS } from '../../../hooks/actions';
 
 export interface SongTime {
 	elapsedTime: number;
@@ -31,6 +32,12 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 			setTimeData({ ...timeData, durationTime: Math.floor(audioRef.current?.duration!) });
 		}
 		setBarProgress((timeData.elapsedTime! / timeData.durationTime!) * 100);
+
+		if (timeData.elapsedTime === timeData.durationTime && timeData.elapsedTime > 10) {
+			dispatch({ type: ACTIONS.NEXT_SONG });
+			setTimeData({ durationTime: 0, elapsedTime: 0 });
+			dispatch({ type: ACTIONS.TOGGLE_SONG });
+		}
 	}
 
 	let intervalId: NodeJS.Timer;

@@ -39,7 +39,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			if (state.songIndex >= songs.length - 1) {
 				return {
 					...state,
-					songStatus: false,
+					songStatus: true,
 					songIndex: 0,
 					id: songs[0].id,
 					volume: 1,
@@ -48,7 +48,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			} else {
 				return {
 					...state,
-					songStatus: false,
+					songStatus: true,
 					songIndex: state.songIndex + 1,
 					id: songs[state.songIndex + 1].id,
 					volume: 1,
