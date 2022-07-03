@@ -20,24 +20,26 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 		let barTargetPercent = Math.floor((e.nativeEvent.offsetX / e.target.closest('div').offsetWidth) * 100);
 		setBarProgress(barTargetPercent);
 
-		// console.log(state);
-		// USTAWIANIE KLIKNIETEGO CZASU
 		countTime();
 		setTimeData({ ...timeData, elapsedTime: Math.floor(timeData.durationTime * (barTargetPercent / 100)) });
 		if (audioRef.current) audioRef.current!.currentTime = Math.floor(timeData.durationTime * (barTargetPercent / 100));
 	}
+
+	function switchSong(): void {
+		if (timeData.elapsedTime === timeData.durationTime && timeData.elapsedTime > 10) {
+			dispatch({ type: ACTIONS.NEXT_SONG });
+			setTimeData({ durationTime: 0, elapsedTime: 0 });
+			// dispatch({ type: ACTIONS.TOGGLE_SONG });
+		}
+	}
+
 	function countTime() {
 		if (audioRef.current) setTimeData({ ...timeData, elapsedTime: Math.floor(audioRef.current!.currentTime) });
 		if (timeData.durationTime === 0 || timeData.durationTime !== Math.floor(audioRef.current?.duration!)) {
 			setTimeData({ ...timeData, durationTime: Math.floor(audioRef.current?.duration!) });
 		}
 		setBarProgress((timeData.elapsedTime! / timeData.durationTime!) * 100);
-
-		if (timeData.elapsedTime === timeData.durationTime && timeData.elapsedTime > 10) {
-			dispatch({ type: ACTIONS.NEXT_SONG });
-			setTimeData({ durationTime: 0, elapsedTime: 0 });
-			dispatch({ type: ACTIONS.TOGGLE_SONG });
-		}
+		switchSong();
 	}
 
 	let intervalId: NodeJS.Timer;
@@ -45,7 +47,8 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 		intervalId = setInterval(countTime, 200);
 		if (!state.songStatus) clearInterval(intervalId);
 		return () => clearInterval(intervalId);
-	}, [state.songStatus, timeData, audioRef.current?.duration]);
+	}, [timeData, audioRef.current?.duration]);
+	// state.songStatus,
 
 	return (
 		<div className='flex flex-col h-[3rem] w-full'>

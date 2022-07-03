@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 import { ACTIONS } from '../../../hooks/actions';
 import PlayButton from '../../atoms/PlayButton/PlayButton';
 import PlayerButton from '../../atoms/PlayerButton/PlayerButton';
-// import prev from '../../../assets/prevButton.svg';
-// import next from '../../../assets/nextButton.svg';
-// import loop from '../../../assets/loopButton.svg';
-// import random from '../../../assets/randomButton.svg';
-// import list from '../../../assets/listButton.svg';
-// import volume from '../../../assets/volumeButton.svg';
-
 import { RefReducerPack } from '../../../hooks/usePlayerHandler';
 import { FaAngleLeft, FaAngleRight, FaVolumeUp, FaRandom, FaExchangeAlt, FaListUl } from 'react-icons/fa';
 
@@ -28,7 +21,9 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 	function nextSong() {
 		dispatch({ type: ACTIONS.NEXT_SONG });
 		setTimeout(() => {
-			if (state.songStatus) audioRef.current!.play();
+			if (state.songStatus) {
+				audioRef.current!.play();
+			}
 		}, 100);
 	}
 	function prevSong() {
@@ -48,7 +43,6 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 
 	function loopSong() {
 		dispatch({ type: ACTIONS.LOOP_SONG });
-		console.log(state);
 	}
 
 	return (

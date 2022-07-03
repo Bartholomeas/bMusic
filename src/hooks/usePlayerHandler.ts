@@ -43,20 +43,24 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			if (state.songIndex >= songs.length - 1) {
 				return {
 					...state,
-					songStatus: true,
+					songStatus: state.songStatus,
 					songIndex: 0,
 					id: songs[0].id,
 					volume: 1,
 					currentSong: songs[0],
+					onLoop: false,
+					isRandom: state.isRandom,
 				};
 			} else {
 				return {
 					...state,
-					songStatus: true,
+					songStatus: state.songStatus,
 					songIndex: state.songIndex + 1,
 					id: songs[state.songIndex + 1].id,
 					volume: 1,
 					currentSong: songs[state.songIndex + 1],
+					onLoop: false,
+					isRandom: state.isRandom,
 				};
 			}
 
@@ -69,6 +73,8 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					id: songs[songs.length - 1].id,
 					volume: 1,
 					currentSong: songs[songs.length - 1],
+					onLoop: false,
+					isRandom: state.isRandom,
 				};
 			} else {
 				return {
@@ -78,6 +84,8 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					id: songs[state.songIndex - 1].id,
 					volume: 1,
 					currentSong: songs[state.songIndex - 1],
+					onLoop: false,
+					isRandom: state.isRandom,
 				};
 			}
 		case ACTIONS.LOOP_SONG:

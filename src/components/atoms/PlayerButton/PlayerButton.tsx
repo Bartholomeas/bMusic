@@ -15,7 +15,7 @@ const PlayerButton: React.FC<{
 				<BtnType className={`fill-primaryDark h-3 w-[20px] ${additionalClass}`} />
 			</button>
 
-			{additionalClass === 'volume h-[20px]' ? (
+			{additionalClass === 'volume' ? (
 				<input
 					onChange={additionalFunction}
 					type='range'
