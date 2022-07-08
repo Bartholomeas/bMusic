@@ -28,6 +28,9 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 	function switchSong(): void {
 		if (timeData.elapsedTime === timeData.durationTime && timeData.elapsedTime > 10) {
 			dispatch({ type: ACTIONS.NEXT_SONG });
+			setTimeout(() => {
+				audioRef.current?.play();
+			}, 100);
 			setTimeData({ durationTime: 0, elapsedTime: 0 });
 			// dispatch({ type: ACTIONS.TOGGLE_SONG });
 		}
@@ -48,7 +51,6 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 		if (!state.songStatus) clearInterval(intervalId);
 		return () => clearInterval(intervalId);
 	}, [timeData, audioRef.current?.duration]);
-	// state.songStatus,
 
 	return (
 		<div className='flex flex-col h-[3rem] w-full'>

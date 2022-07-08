@@ -40,6 +40,19 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			return { ...state, songStatus: !state.songStatus };
 
 		case ACTIONS.NEXT_SONG:
+			// if (state.onLoop) {
+			// 	return {
+			// 		...state,
+			// 		songStatus: state.songStatus,
+			// 		songIndex: state.songIndex,
+			// 		id: songs[state.songIndex].id,
+			// 		volume: 1,
+			// 		currentSong: songs[state.songIndex],
+			// 		onLoop: false,
+			// 		isRandom: state.isRandom,
+			// 	};
+			// }
+
 			if (state.songIndex >= songs.length - 1) {
 				return {
 					...state,

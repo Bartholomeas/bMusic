@@ -42,6 +42,7 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 	}
 
 	function loopSong() {
+		console.log(state);
 		dispatch({ type: ACTIONS.LOOP_SONG });
 	}
 
