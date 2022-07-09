@@ -104,6 +104,11 @@ function songStatusReducer(state: SongState, action: SongAction) {
 		case ACTIONS.LOOP_SONG:
 			return { ...state, onLoop: !state.onLoop };
 
+		case ACTIONS.RANDOM_SONG:
+			console.log(Math.floor(Math.random() * songs.length));
+
+			return { ...state, isRandom: !state.isRandom };
+
 		case ACTIONS.CHANGE_VOLUME:
 			return { ...state, volume: action.payload };
 

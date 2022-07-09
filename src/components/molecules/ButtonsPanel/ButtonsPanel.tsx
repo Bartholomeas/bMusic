@@ -46,6 +46,11 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 		dispatch({ type: ACTIONS.LOOP_SONG });
 	}
 
+	function setRandom() {
+		console.log(state);
+		dispatch({ type: ACTIONS.RANDOM_SONG });
+	}
+
 	return (
 		<div className='flex flex-col w-full h-auto'>
 			<div className='flex justify-between items-center'>
@@ -60,6 +65,7 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 			</div>
 			<div className='flex justify-between items-center w-full'>
 				<PlayerButton
+					reducerFunction={() => setRandom()}
 					additionalClass={`loop ${state.isRandom ? 'fill-primary' : 'fill-primaryDark'}`}
 					BtnType={FaRandom}
 				/>

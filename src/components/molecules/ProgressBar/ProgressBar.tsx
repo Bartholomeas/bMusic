@@ -32,7 +32,6 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 				audioRef.current?.play();
 			}, 100);
 			setTimeData({ durationTime: 0, elapsedTime: 0 });
-			// dispatch({ type: ACTIONS.TOGGLE_SONG });
 		}
 	}
 
