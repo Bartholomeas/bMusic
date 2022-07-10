@@ -40,18 +40,18 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			return { ...state, songStatus: !state.songStatus };
 
 		case ACTIONS.NEXT_SONG:
-			// if (state.onLoop) {
-			// 	return {
-			// 		...state,
-			// 		songStatus: state.songStatus,
-			// 		songIndex: state.songIndex,
-			// 		id: songs[state.songIndex].id,
-			// 		volume: 1,
-			// 		currentSong: songs[state.songIndex],
-			// 		onLoop: false,
-			// 		isRandom: state.isRandom,
-			// 	};
-			// }
+			if (state.onLoop && !action.payload) {
+				return {
+					...state,
+					songStatus: state.songStatus,
+					songIndex: state.songIndex,
+					id: songs[state.songIndex].id,
+					volume: 1,
+					currentSong: songs[state.songIndex],
+					onLoop: state.onLoop,
+					isRandom: state.isRandom,
+				};
+			}
 
 			if (state.songIndex >= songs.length - 1) {
 				return {
@@ -61,7 +61,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					id: songs[0].id,
 					volume: 1,
 					currentSong: songs[0],
-					onLoop: false,
+					onLoop: state.onLoop,
 					isRandom: state.isRandom,
 				};
 			} else {
@@ -72,12 +72,25 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					id: songs[state.songIndex + 1].id,
 					volume: 1,
 					currentSong: songs[state.songIndex + 1],
-					onLoop: false,
+					onLoop: state.onLoop,
 					isRandom: state.isRandom,
 				};
 			}
 
 		case ACTIONS.PREV_SONG:
+			if (state.onLoop && !action.payload) {
+				return {
+					...state,
+					songStatus: state.songStatus,
+					songIndex: state.songIndex,
+					id: songs[state.songIndex].id,
+					volume: 1,
+					currentSong: songs[state.songIndex],
+					onLoop: state.onLoop,
+					isRandom: state.isRandom,
+				};
+			}
+
 			if (state.songIndex === 0) {
 				return {
 					...state,
@@ -105,8 +118,6 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			return { ...state, onLoop: !state.onLoop };
 
 		case ACTIONS.RANDOM_SONG:
-			console.log(Math.floor(Math.random() * songs.length));
-
 			return { ...state, isRandom: !state.isRandom };
 
 		case ACTIONS.CHANGE_VOLUME:

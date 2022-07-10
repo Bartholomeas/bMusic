@@ -19,7 +19,7 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 	}
 
 	function nextSong() {
-		dispatch({ type: ACTIONS.NEXT_SONG });
+		dispatch({ type: ACTIONS.NEXT_SONG, payload: true });
 		setTimeout(() => {
 			if (state.songStatus) {
 				audioRef.current!.play();
