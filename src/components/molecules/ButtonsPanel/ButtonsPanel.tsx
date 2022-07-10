@@ -27,7 +27,7 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 		}, 100);
 	}
 	function prevSong() {
-		dispatch({ type: ACTIONS.PREV_SONG });
+		dispatch({ type: ACTIONS.PREV_SONG, payload: true });
 		setTimeout(() => {
 			if (state.songStatus) audioRef.current!.play();
 		}, 100);
@@ -42,12 +42,10 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 	}
 
 	function loopSong() {
-		console.log(state);
 		dispatch({ type: ACTIONS.LOOP_SONG });
 	}
 
 	function setRandom() {
-		console.log(state);
 		dispatch({ type: ACTIONS.RANDOM_SONG });
 	}
 

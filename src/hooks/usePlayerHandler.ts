@@ -15,8 +15,6 @@ export interface SongState {
 	songIndex: number;
 	onLoop: boolean;
 	isRandom: boolean;
-	// durationTime: number;
-	// elapsedTime: number;
 }
 interface SongAction {
 	type: string;
@@ -31,8 +29,17 @@ const initialState: SongState = {
 	currentSong: songs[0],
 	onLoop: false,
 	isRandom: false,
-	// durationTime: songs[0],
 };
+
+let randomNumber: number = 0;
+// Math.floor(Math.random() * songs.length)
+
+function generateRandom(): number {
+	// console.log('obecne id ' + currentId);
+	// console.log('randomowy w funkcji ' + randomNumber);
+	console.log('uzyte');
+	return (randomNumber = Math.floor(Math.random() * songs.length));
+}
 
 function songStatusReducer(state: SongState, action: SongAction) {
 	switch (action.type) {
@@ -40,40 +47,40 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			return { ...state, songStatus: !state.songStatus };
 
 		case ACTIONS.NEXT_SONG:
+			if (state.isRandom) {
+				do {
+					generateRandom();
+					console.log(`stanId ${state.id}`);
+				} while (state.id == randomNumber);
+				// if (randomNumber === state.id) generateRandom(state.id);
+				// console.log('randomowy w akcji ' + randomNumber);
+
+				state.songIndex = randomNumber;
+			}
 			if (state.onLoop && !action.payload) {
 				return {
 					...state,
-					songStatus: state.songStatus,
-					songIndex: state.songIndex,
 					id: songs[state.songIndex].id,
 					volume: 1,
 					currentSong: songs[state.songIndex],
-					onLoop: state.onLoop,
-					isRandom: state.isRandom,
 				};
 			}
 
 			if (state.songIndex >= songs.length - 1) {
 				return {
 					...state,
-					songStatus: state.songStatus,
 					songIndex: 0,
 					id: songs[0].id,
 					volume: 1,
 					currentSong: songs[0],
-					onLoop: state.onLoop,
-					isRandom: state.isRandom,
 				};
 			} else {
 				return {
 					...state,
-					songStatus: state.songStatus,
 					songIndex: state.songIndex + 1,
 					id: songs[state.songIndex + 1].id,
 					volume: 1,
 					currentSong: songs[state.songIndex + 1],
-					onLoop: state.onLoop,
-					isRandom: state.isRandom,
 				};
 			}
 
@@ -81,37 +88,27 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			if (state.onLoop && !action.payload) {
 				return {
 					...state,
-					songStatus: state.songStatus,
-					songIndex: state.songIndex,
 					id: songs[state.songIndex].id,
 					volume: 1,
 					currentSong: songs[state.songIndex],
-					onLoop: state.onLoop,
-					isRandom: state.isRandom,
 				};
 			}
 
 			if (state.songIndex === 0) {
 				return {
 					...state,
-					songStatus: true,
 					songIndex: songs.length - 1,
 					id: songs[songs.length - 1].id,
 					volume: 1,
 					currentSong: songs[songs.length - 1],
-					onLoop: false,
-					isRandom: state.isRandom,
 				};
 			} else {
 				return {
 					...state,
-					songStatus: true,
 					songIndex: state.songIndex - 1,
 					id: songs[state.songIndex - 1].id,
 					volume: 1,
 					currentSong: songs[state.songIndex - 1],
-					onLoop: false,
-					isRandom: state.isRandom,
 				};
 			}
 		case ACTIONS.LOOP_SONG:
