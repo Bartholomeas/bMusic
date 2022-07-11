@@ -52,13 +52,13 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 	}, [timeData, audioRef.current?.duration]);
 
 	return (
-		<div className='flex flex-col h-[3rem] w-full'>
+		<div className='flex flex-col h-[120px] w-full'>
 			<Timer classContent='self-end' time={timeData.durationTime} />
 			<div
 				onClick={e => updateProgress(e)}
-				className='relative w-full h-[10px] bar rounded-full bg-primaryPastel cursor-pointer'
+				className='relative w-full h-1 bar rounded-full bg-lightGrey cursor-pointer'
 				aria-label='Progress bar of song'>
-				<span style={{ width: `${barProgress}%` }} className={`h-full absolute left-[1px] rounded-full bg-primary`}>
+				<span style={{ width: `${barProgress}%` }} className={`h-full  absolute left-[1px] rounded-full bg-primary`}>
 					<Timer classContent='absolute top-[10px] right-0  translate-x-[100%]' time={timeData.elapsedTime!} />
 				</span>
 			</div>

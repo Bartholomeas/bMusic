@@ -6,7 +6,7 @@ const PlayButton: React.FC<{ state: SongState; reducerFunction: () => any }> = (
 	return (
 		<button
 			onClick={reducerFunction}
-			className=' rounded-full p-2 bg-primaryDark transition-transform ease  hover:scale-90'>
+			className=' rounded-full p-2 bg-coreGrey transition-transform ease  hover:scale-90'>
 			{state.songStatus ? (
 				<FaPause className='h-1.5 fill-backgroundSecond h-2 w-2' />
 			) : (

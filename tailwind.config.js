@@ -34,15 +34,19 @@ module.exports = {
 		},
 		extend: {
 			colors: {
-				backgroundPrimary: '#F0F2F7',
+				backgroundPrimary: '#DFF5F2',
 				backgroundSecond: '#FCFCFD',
-				primary: '#AE0F95',
-				primaryDark: '#4A1F46',
+				coreGrey: '#677371',
+				lightGrey: '#D9DDDC',
+				primary: '#7BCBBD',
+				primaryDark: '#68938C',
 				primaryPastel: '#E0C4DC',
 				primaryOff: '#A38DA1',
+				secondaryDark: '#13211F',
+				secondaryLight: '#586967',
 			},
 			dropShadow: {
-				standardShadow: '-10px 10px 40px #E6DDE5',
+				standardShadow: '-10px 10px 40px #B2CAC6',
 			},
 
 			borderRadius: {

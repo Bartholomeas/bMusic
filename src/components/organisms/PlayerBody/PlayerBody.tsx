@@ -3,6 +3,7 @@ import ImageBox from '../../atoms/ImageBox/ImageBox';
 import ButtonsPanel from '../../molecules/ButtonsPanel/ButtonsPanel';
 import InfoBox from '../../molecules/InfoBox/InfoBox';
 import ProgressBar from '../../molecules/ProgressBar/ProgressBar';
+import OptionsPanel from '../OptionsPanel/OptionsPanel';
 import { usePlayerHandler } from '../../../hooks/usePlayerHandler';
 
 const PlayerBody = () => {
@@ -14,8 +15,9 @@ const PlayerBody = () => {
 			<audio src={state.currentSong.source ? state.currentSong.source : ''} ref={audioRef}></audio>
 			<ImageBox coverImg={state.currentSong.image} />
 			<InfoBox author={state.currentSong.author} title={state.currentSong.title} />
-			<ButtonsPanel state={state} dispatch={dispatch} audioRef={audioRef} />
+			<OptionsPanel state={state} dispatch={dispatch} audioRef={audioRef} />
 			<ProgressBar state={state} dispatch={dispatch} audioRef={audioRef} />
+			<ButtonsPanel state={state} dispatch={dispatch} audioRef={audioRef} />
 		</div>
 	);
 };

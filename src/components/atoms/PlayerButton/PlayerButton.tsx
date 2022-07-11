@@ -12,7 +12,7 @@ const PlayerButton: React.FC<{
 	return (
 		<>
 			<button onClick={reducerFunction} className={`p-1 transition-transform ease hover:scale-90 `}>
-				<BtnType className={`fill-primaryDark h-3 w-[20px] ${additionalClass}`} />
+				<BtnType className={`fill-coreGrey h-3 w-[20px] ${additionalClass}`} />
 			</button>
 
 			{additionalClass === 'volume' ? (
