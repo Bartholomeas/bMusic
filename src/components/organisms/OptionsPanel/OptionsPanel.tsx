@@ -4,7 +4,7 @@ import PlayerButton from '../../atoms/PlayerButton/PlayerButton';
 import { RefReducerPack } from '../../../hooks/usePlayerHandler';
 import { FaVolumeUp, FaListUl } from 'react-icons/fa';
 
-const OptionsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
+const 	OptionsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	function toggleVolume() {

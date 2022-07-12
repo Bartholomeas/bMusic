@@ -18,22 +18,22 @@ const SongCard = ({ title, author, songId, dispatch, state, audioRef }: CardProp
 		setTimeout(() => {
 			audioRef.current?.play();
 			setIsPlaying(true);
-		}, 100);
+		}, 50);
 
 		if (songId === state.id && state.songStatus && isPlaying) {
 			setTimeout(() => {
 				audioRef.current?.pause();
-				console.log('pauze');
-				setIsPlaying(false);
-			}, 200);
-		}
+				dispatch({ type: ACTIONS.TOGGLE_SONG });
 
-		return;
+				setIsPlaying(false);
+			}, 50);
+		}
+		// return;
 	}
 	return (
 		<div className='flex flex-row gap-2 h-5 p-[7px] w-full items-center justify-start rounded-full bg-primaryDark'>
 			<ListPlayButton
-				isPlaying={songId === state.id && state.songStatus ? true : false}
+				isPlaying={songId === state.id && state.songStatus && isPlaying ? true : false}
 				reducerFunction={() => toggleSong()}
 			/>
 			<div>

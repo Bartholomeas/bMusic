@@ -45,7 +45,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			if (action.payload) {
 				return {
 					...state,
-					songStatus: true	,
+					songStatus: true,
 					songIndex: parseInt(action.payload),
 					id: parseInt(action.payload),
 					volume: 1,
