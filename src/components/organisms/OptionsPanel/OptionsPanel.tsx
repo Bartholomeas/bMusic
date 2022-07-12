@@ -15,6 +15,10 @@ const OptionsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 		dispatch({ type: ACTIONS.CHANGE_VOLUME, payload: e.target.value / 100 });
 	}
 
+	function toggleList(): void {
+		dispatch({ type: ACTIONS.OPEN_LIST });
+	}
+
 	return (
 		<div className=' flex justify-between items-center w-[100%] h-3 '>
 			<PlayerButton
@@ -24,7 +28,7 @@ const OptionsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 				additionalFunction={e => handleVolume(e)}
 				isOpen={isOpen}
 			/>
-			<PlayerButton BtnType={FaListUl} />
+			<PlayerButton BtnType={FaListUl} reducerFunction={() => toggleList()} />
 		</div>
 	);
 };

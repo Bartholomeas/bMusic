@@ -1,13 +1,21 @@
-import React from 'react';
 import { RefReducerPack } from '../../../hooks/usePlayerHandler';
 import SongCard from '../../molecules/SongCard/SongCard';
 import CloseButton from '../../atoms/CloseButton/CloseButton';
 import CardWrapper from '../../molecules/CardWrapper/CardWrapper';
 import { songs } from '../../../songs';
+import { ACTIONS } from '../../../hooks/actions';
+
 const SongList = ({ state, dispatch, audioRef }: RefReducerPack) => {
+	function toggleList(): void {
+		dispatch({ type: ACTIONS.OPEN_LIST });
+	}
+
 	return (
-		<div className='flex flex-col justify-start items-center gap-3 absolute bottom-0 left-0 w-full h-[80%] p-1 bg-primary z-40 rounded-t-md '>
-			<CloseButton />
+		<div
+			className={`flex flex-col justify-start items-center gap-3 absolute bottom-0 left-0 w-full h-[80%] p-1 bg-primary z-40 rounded-t-md transition-transform ease-out duration-300 ${
+				state.listOpen ? 'translate-y-0' : 'translate-y-full'
+			}`}>
+			<CloseButton onClick={toggleList} />
 
 			<CardWrapper>
 				{songs.map(song => (
@@ -17,7 +25,7 @@ const SongList = ({ state, dispatch, audioRef }: RefReducerPack) => {
 						state={state}
 						dispatch={dispatch}
 						audioRef={audioRef}
-						key={song.id + '-' + 'song'}
+						key={`${song.id}'-song`}
 					/>
 				))}
 			</CardWrapper>

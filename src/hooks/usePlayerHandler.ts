@@ -1,4 +1,4 @@
-import { useReducer, RefObject, useState } from 'react';
+import { useReducer, RefObject } from 'react';
 import { ACTIONS } from './actions';
 import { songs, SongInterface } from '../songs';
 
@@ -15,6 +15,7 @@ export interface SongState {
 	songIndex: number;
 	onLoop: boolean;
 	isRandom: boolean;
+	listOpen: boolean;
 }
 interface SongAction {
 	type: string;
@@ -29,6 +30,7 @@ const initialState: SongState = {
 	currentSong: songs[0],
 	onLoop: false,
 	isRandom: false,
+	listOpen: false,
 };
 
 let randomNumber: number = 0;
@@ -51,7 +53,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 				do {
 					generateRandom();
 					console.log(`stanId ${state.id}`);
-				} while (state.id == randomNumber);
+				} while (state.id === randomNumber);
 				// if (randomNumber === state.id) generateRandom(state.id);
 				// console.log('randomowy w akcji ' + randomNumber);
 
@@ -119,6 +121,9 @@ function songStatusReducer(state: SongState, action: SongAction) {
 
 		case ACTIONS.CHANGE_VOLUME:
 			return { ...state, volume: action.payload };
+
+		case ACTIONS.OPEN_LIST:
+			return { ...state, listOpen: !state.listOpen };
 
 		default:
 			throw new Error('ERROR');

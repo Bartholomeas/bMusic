@@ -38,6 +38,10 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 		dispatch({ type: ACTIONS.RANDOM_SONG });
 	}
 
+	function toggleList(): void {
+		dispatch({ type: ACTIONS.OPEN_LIST });
+	}
+
 	return (
 		<div className='flex flex-col w-full h-auto'>
 			<div className='flex justify-between items-center w-full'>
