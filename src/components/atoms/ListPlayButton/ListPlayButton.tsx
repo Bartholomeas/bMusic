@@ -1,12 +1,12 @@
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { SongState } from '../../../hooks/usePlayerHandler';
 
-const ListPlayButton = ({ state, reducerFunction }: { state: SongState; reducerFunction: () => any }) => {
+const ListPlayButton = ({ isPlaying, reducerFunction }: { isPlaying: boolean; reducerFunction: () => any }) => {
 	return (
 		<button
 			onClick={reducerFunction}
 			className='rounded-full p-1 bg-accentColor transition-transform ease hover:scale-90'>
-			{state.songStatus ? (
+			{isPlaying ? (
 				<FaPause className='h-1.5 fill-primaryDark h-1 w-1' />
 			) : (
 				<FaPlay className='h-1.5 fill-primaryDark h-1 w-1' />

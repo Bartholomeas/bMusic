@@ -43,14 +43,13 @@ function songStatusReducer(state: SongState, action: SongAction) {
 	switch (action.type) {
 		case ACTIONS.TOGGLE_SONG:
 			if (action.payload) {
-				parseInt(action.payload);
 				return {
 					...state,
-					songStatus: !state.songStatus,
-					songIndex: action.payload,
-					id: action.payload,
+					songStatus: true	,
+					songIndex: parseInt(action.payload),
+					id: parseInt(action.payload),
 					volume: 1,
-					currentSong: songs[action.payload],
+					currentSong: songs[parseInt(action.payload)],
 				};
 			}
 			return { ...state, songStatus: !state.songStatus };
