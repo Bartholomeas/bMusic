@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/bMusic/static/css/main.ac92d8bb.css",
+    "main.js": "/bMusic/static/js/main.140c3826.js",
+    "static/media/diehard.mp3": "/bMusic/static/media/diehard.1066bfe894775300d39a.mp3",
+    "static/media/hotlinebling.mp3": "/bMusic/static/media/hotlinebling.0cad0a8184fa5e613075.mp3",
+    "static/media/sexyback.mp3": "/bMusic/static/media/sexyback.9ed534929514732ec43e.mp3",
+    "static/media/timberlake.jpeg": "/bMusic/static/media/timberlake.3aa39ba2a24ae1d2934a.jpeg",
+    "static/media/kendrick.jpeg": "/bMusic/static/media/kendrick.b2cac88a43be4f374e79.jpeg",
+    "static/media/drake.jpeg": "/bMusic/static/media/drake.60f3b18b0a7ba4fed304.jpeg",
+    "index.html": "/bMusic/index.html",
+    "main.ac92d8bb.css.map": "/bMusic/static/css/main.ac92d8bb.css.map",
+    "main.140c3826.js.map": "/bMusic/static/js/main.140c3826.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ac92d8bb.css",
+    "static/js/main.140c3826.js"
+  ]
+}
