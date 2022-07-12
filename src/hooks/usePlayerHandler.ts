@@ -34,28 +34,32 @@ const initialState: SongState = {
 };
 
 let randomNumber: number = 0;
-// Math.floor(Math.random() * songs.length)
 
 function generateRandom(): number {
-	// console.log('obecne id ' + currentId);
-	// console.log('randomowy w funkcji ' + randomNumber);
-	console.log('uzyte');
 	return (randomNumber = Math.floor(Math.random() * songs.length));
 }
 
 function songStatusReducer(state: SongState, action: SongAction) {
 	switch (action.type) {
 		case ACTIONS.TOGGLE_SONG:
+			if (action.payload) {
+				parseInt(action.payload);
+				return {
+					...state,
+					songStatus: !state.songStatus,
+					songIndex: action.payload,
+					id: action.payload,
+					volume: 1,
+					currentSong: songs[action.payload],
+				};
+			}
 			return { ...state, songStatus: !state.songStatus };
 
 		case ACTIONS.NEXT_SONG:
 			if (state.isRandom) {
 				do {
 					generateRandom();
-					console.log(`stanId ${state.id}`);
 				} while (state.id === randomNumber);
-				// if (randomNumber === state.id) generateRandom(state.id);
-				// console.log('randomowy w akcji ' + randomNumber);
 
 				state.songIndex = randomNumber;
 			}

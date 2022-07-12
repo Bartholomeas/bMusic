@@ -5,7 +5,7 @@ const ListPlayButton = ({ state, reducerFunction }: { state: SongState; reducerF
 	return (
 		<button
 			onClick={reducerFunction}
-			className=' rounded-full p-1 bg-accentColor transition-transform ease  hover:scale-90'>
+			className='rounded-full p-1 bg-accentColor transition-transform ease hover:scale-90'>
 			{state.songStatus ? (
 				<FaPause className='h-1.5 fill-primaryDark h-1 w-1' />
 			) : (

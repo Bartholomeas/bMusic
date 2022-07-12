@@ -25,6 +25,7 @@ const SongList = ({ state, dispatch, audioRef }: RefReducerPack) => {
 						state={state}
 						dispatch={dispatch}
 						audioRef={audioRef}
+						songId={song.id}
 						key={`${song.id}'-song`}
 					/>
 				))}
