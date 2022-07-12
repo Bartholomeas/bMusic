@@ -1,5 +1,5 @@
 const Title: React.FC<{ title: string }> = ({ title = '' }) => {
-	return <h1 className='text-secondaryDark font-bold text-xl'>{title}</h1>;
+	return <p className='text-secondaryDark font-bold text-xl'>{title}</p>;
 };
 
 export default Title;

@@ -26,7 +26,7 @@ module.exports = {
 		// 	DEFAULT: '16px',
 		// },
 		fontSize: {
-			xs: '8px',
+			xs: '11px',
 			sm: '16px',
 			md: '20px',
 			lg: '24px',
@@ -39,14 +39,13 @@ module.exports = {
 				coreGrey: '#677371',
 				lightGrey: '#D9DDDC',
 				primary: '#7BCBBD',
-				primaryDark: '#68938C',
-				primaryPastel: '#E0C4DC',
-				primaryOff: '#A38DA1',
+				primaryDark: '#6CC0B1',
+				accentColor: '#4A1F46',
 				secondaryDark: '#13211F',
 				secondaryLight: '#586967',
 			},
 			dropShadow: {
-				standardShadow: '-10px 10px 40px #B2CAC6',
+				standardShadow: '-10px 10px 25px #C7CDCC',
 			},
 
 			borderRadius: {

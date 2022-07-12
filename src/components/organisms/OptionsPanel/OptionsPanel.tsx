@@ -16,7 +16,7 @@ const OptionsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 	}
 
 	return (
-		<div className='flex justify-between items-center w-[100%] h-3 '>
+		<div className=' flex justify-between items-center w-[100%] h-3 '>
 			<PlayerButton
 				additionalClass='volume'
 				BtnType={FaVolumeUp}

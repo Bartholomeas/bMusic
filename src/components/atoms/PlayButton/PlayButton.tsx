@@ -2,7 +2,7 @@ import React from 'react';
 import { SongState } from '../../../hooks/usePlayerHandler';
 import { FaPlay, FaPause } from 'react-icons/fa';
 
-const PlayButton: React.FC<{ state: SongState; reducerFunction: () => any }> = ({ state, reducerFunction }) => {
+const PlayButton = ({ state, reducerFunction }: { state: SongState; reducerFunction: () => any }) => {
 	return (
 		<button
 			onClick={reducerFunction}
