@@ -24,6 +24,7 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 	}
 
 	function switchSong(): void {
+		// TUT
 		if (timeData.elapsedTime === state.duration && timeData.elapsedTime > 10) {
 			dispatch({ type: ACTIONS.NEXT_SONG });
 			setTimeout(() => {
@@ -35,11 +36,7 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 
 	function countTime() {
 		if (audioRef.current && state.songStatus) setTimeData({ elapsedTime: Math.floor(audioRef.current!.currentTime) });
-		// if (state.duration === 0 || state.duration !== Math.floor(audioRef.current?.duration!)) {
-
-		// }
 		setBarProgress((timeData.elapsedTime! / state.duration) * 100);
-		console.log(barProgress);
 		switchSong();
 	}
 

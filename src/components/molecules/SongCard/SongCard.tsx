@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ACTIONS } from '../../../hooks/actions';
 import { RefReducerPack } from '../../../hooks/usePlayerHandler';
 import ListPlayButton from '../../atoms/ListPlayButton/ListPlayButton';
@@ -28,8 +28,16 @@ const SongCard = ({ title, author, songId, dispatch, state, audioRef }: CardProp
 				setIsPlaying(false);
 			}, 50);
 		}
-		// return;
+
+		return;
 	}
+
+	useEffect(() => {
+		if (state.songStatus && state.id === songId) {
+			setIsPlaying(true);
+		}
+	}, [state.songStatus, state.id]);
+
 	return (
 		<div className='flex flex-row gap-2 h-5 p-[7px] w-full items-center justify-start rounded-full bg-primaryDark'>
 			<ListPlayButton
