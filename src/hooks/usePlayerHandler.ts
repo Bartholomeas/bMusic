@@ -68,6 +68,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 						songIndex: randomNumber,
 						volume: 1,
 						currentSong: songs[randomNumber],
+						duration: songs[randomNumber].duration,
 					};
 				}
 			}

@@ -24,20 +24,20 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 	}
 
 	function switchSong(): void {
-		// TUT
-		if (timeData.elapsedTime === state.duration && timeData.elapsedTime > 10) {
-			dispatch({ type: ACTIONS.NEXT_SONG });
-			setTimeout(() => {
-				audioRef.current?.play();
-			}, 100);
-			setTimeData({ elapsedTime: 0 });
-		}
+		dispatch({ type: ACTIONS.NEXT_SONG });
+		setTimeout(() => {
+			audioRef.current?.play();
+		}, 100);
+		setTimeData({ elapsedTime: 0 });
 	}
 
 	function countTime() {
+		console.log(audioRef.current?.duration);
 		if (audioRef.current && state.songStatus) setTimeData({ elapsedTime: Math.floor(audioRef.current!.currentTime) });
 		setBarProgress((timeData.elapsedTime! / state.duration) * 100);
-		switchSong();
+		if (timeData.elapsedTime >= state.duration && timeData.elapsedTime > 10) {
+			switchSong();
+		}
 	}
 
 	let intervalId: NodeJS.Timer;
