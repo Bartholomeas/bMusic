@@ -1,19 +1,25 @@
 {
   "files": {
-    "main.css": "/bMusic/static/css/main.ac92d8bb.css",
-    "main.js": "/bMusic/static/js/main.b038c3f0.js",
+    "main.css": "/bMusic/static/css/main.eaa364c6.css",
+    "main.js": "/bMusic/static/js/main.0dec97ab.js",
     "static/media/diehard.mp3": "/bMusic/static/media/diehard.1066bfe894775300d39a.mp3",
+    "static/media/ayotechnology.mp3": "/bMusic/static/media/ayotechnology.0535979b4ce907d42755.mp3",
+    "static/media/selfcontrol.mp3": "/bMusic/static/media/selfcontrol.2893b102591eb9cf0b46.mp3",
     "static/media/hotlinebling.mp3": "/bMusic/static/media/hotlinebling.0cad0a8184fa5e613075.mp3",
     "static/media/sexyback.mp3": "/bMusic/static/media/sexyback.9ed534929514732ec43e.mp3",
+    "static/media/greeneyes.mp3": "/bMusic/static/media/greeneyes.e0dd6b5d7271b8e54e01.mp3",
     "static/media/timberlake.jpeg": "/bMusic/static/media/timberlake.3aa39ba2a24ae1d2934a.jpeg",
+    "static/media/zenek.jpeg": "/bMusic/static/media/zenek.6c62950183d7c6c096ce.jpeg",
     "static/media/kendrick.jpeg": "/bMusic/static/media/kendrick.b2cac88a43be4f374e79.jpeg",
+    "static/media/laura.jpeg": "/bMusic/static/media/laura.7de863fe2f73430b35fa.jpeg",
     "static/media/drake.jpeg": "/bMusic/static/media/drake.60f3b18b0a7ba4fed304.jpeg",
+    "static/media/50cent.jpeg": "/bMusic/static/media/50cent.334a7fa87a36aa8de9b6.jpeg",
     "index.html": "/bMusic/index.html",
-    "main.ac92d8bb.css.map": "/bMusic/static/css/main.ac92d8bb.css.map",
-    "main.b038c3f0.js.map": "/bMusic/static/js/main.b038c3f0.js.map"
+    "main.eaa364c6.css.map": "/bMusic/static/css/main.eaa364c6.css.map",
+    "main.0dec97ab.js.map": "/bMusic/static/js/main.0dec97ab.js.map"
   },
   "entrypoints": [
-    "static/css/main.ac92d8bb.css",
-    "static/js/main.b038c3f0.js"
+    "static/css/main.eaa364c6.css",
+    "static/js/main.0dec97ab.js"
   ]
 }
