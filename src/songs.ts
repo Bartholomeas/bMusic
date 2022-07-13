@@ -10,6 +10,7 @@ export interface SongInterface {
 	id: number;
 	title: string;
 	author: string;
+	duration: number;
 	image: string;
 	source: SongSource;
 }
@@ -19,6 +20,7 @@ export const songs: SongInterface[] = [
 		id: 0,
 		title: 'Die Hard',
 		author: 'Kendrick Lamar',
+		duration: 239,
 		image: dieHardCover,
 		source: dieHardSong,
 	},
@@ -26,6 +28,7 @@ export const songs: SongInterface[] = [
 		id: 1,
 		title: 'Hotline Bling',
 		author: 'Drake',
+		duration: 270.4,
 		image: hotlineBlingCover,
 		source: hotlineBlingSong,
 	},
@@ -33,6 +36,7 @@ export const songs: SongInterface[] = [
 		id: 2,
 		title: 'SexyBack',
 		author: 'Justin Timberlake & Timbaland',
+		duration: 242,
 		image: sexybackCover,
 		source: sexybackSong,
 	},

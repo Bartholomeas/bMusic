@@ -9,10 +9,11 @@ export interface RefReducerPack {
 }
 export interface SongState {
 	songStatus: boolean;
+	songIndex: number;
 	id: number;
 	volume: number;
 	currentSong: SongInterface;
-	songIndex: number;
+	duration: number;
 	onLoop: boolean;
 	isRandom: boolean;
 	listOpen: boolean;
@@ -28,6 +29,7 @@ const initialState: SongState = {
 	id: songs[0].id,
 	volume: 1,
 	currentSong: songs[0],
+	duration: songs[0].duration,
 	onLoop: false,
 	isRandom: false,
 	listOpen: false,
@@ -68,6 +70,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					id: songs[state.songIndex].id,
 					volume: 1,
 					currentSong: songs[state.songIndex],
+					duration: songs[state.songIndex].duration,
 				};
 			}
 
@@ -77,6 +80,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					songIndex: 0,
 					id: songs[0].id,
 					volume: 1,
+					duration: songs[0].duration,
 					currentSong: songs[0],
 				};
 			} else {
@@ -86,6 +90,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					id: songs[state.songIndex + 1].id,
 					volume: 1,
 					currentSong: songs[state.songIndex + 1],
+					duration: songs[state.songIndex + 1].duration,
 				};
 			}
 
@@ -96,6 +101,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					id: songs[state.songIndex].id,
 					volume: 1,
 					currentSong: songs[state.songIndex],
+					duration: songs[state.songIndex].duration,
 				};
 			}
 
@@ -106,6 +112,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					id: songs[songs.length - 1].id,
 					volume: 1,
 					currentSong: songs[songs.length - 1],
+					duration: songs[songs.length - 1].duration,
 				};
 			} else {
 				return {
@@ -114,6 +121,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					id: songs[state.songIndex - 1].id,
 					volume: 1,
 					currentSong: songs[state.songIndex - 1],
+					duration: songs[state.songIndex - 1].duration,
 				};
 			}
 		case ACTIONS.LOOP_SONG:
