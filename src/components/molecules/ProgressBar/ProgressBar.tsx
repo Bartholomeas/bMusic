@@ -34,7 +34,7 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 	}
 
 	function countTime() {
-		if (audioRef.current) setTimeData({ elapsedTime: Math.floor(audioRef.current!.currentTime) });
+		if (audioRef.current && state.songStatus) setTimeData({ elapsedTime: Math.floor(audioRef.current!.currentTime) });
 		// if (state.duration === 0 || state.duration !== Math.floor(audioRef.current?.duration!)) {
 
 		// }
@@ -48,7 +48,7 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 		intervalId = setInterval(countTime, 200);
 		if (!state.songStatus) clearInterval(intervalId);
 		return () => clearInterval(intervalId);
-	}, [audioRef.current, state.duration, timeData.elapsedTime]);
+	}, [state.songStatus, state.duration, timeData.elapsedTime]);
 
 	return (
 		<div className='flex flex-col h-[120px] w-full'>
