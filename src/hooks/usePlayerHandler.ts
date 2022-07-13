@@ -35,8 +35,7 @@ const initialState: SongState = {
 	listOpen: false,
 };
 
-let randomNumber: number = 0;
-
+let randomNumber: number;
 function generateRandom(): number {
 	return (randomNumber = Math.floor(Math.random() * songs.length));
 }
@@ -60,9 +59,17 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			if (state.isRandom) {
 				do {
 					generateRandom();
-				} while (state.id === randomNumber);
-
-				state.songIndex = randomNumber;
+					console.log(randomNumber, state.id);
+				} while (state.songIndex === randomNumber);
+				if (state.songIndex !== randomNumber) {
+					return {
+						...state,
+						id: randomNumber,
+						songIndex: randomNumber,
+						volume: 1,
+						currentSong: songs[randomNumber],
+					};
+				}
 			}
 			if (state.onLoop && !action.payload) {
 				return {
