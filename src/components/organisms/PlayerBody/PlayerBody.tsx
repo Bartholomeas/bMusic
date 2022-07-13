@@ -6,15 +6,13 @@ import ProgressBar from '../../molecules/ProgressBar/ProgressBar';
 import OptionsPanel from '../OptionsPanel/OptionsPanel';
 import { usePlayerHandler } from '../../../hooks/usePlayerHandler';
 import SongList from '../SongList/SongList';
-import { songs } from '../../../songs';
 
 const PlayerBody = () => {
 	const { state, dispatch } = usePlayerHandler();
 	const audioRef = useRef<HTMLAudioElement>(null);
 
-	// overflow-hidden
 	return (
-		<div className='app-wrapper flex gap-1 flex-col justify-between items-center px-2 pb-3 pt-2  max-w-sm w-full h-screen max-h-[650px] backdrop-blur-md drop-shadow-standardShadow bg-backgroundSecond rounded-xl overflow-hidden'>
+		<div className='relative app-wrapper flex gap-1 flex-col justify-between items-center px-2 pb-3 pt-2 max-h-screen w-full h-full drop-shadow-standardShadow bg-backgroundSecond rounded-xl overflow-hidden md:max-h-[650px] max-w-sm'>
 			<audio src={state.currentSong.source ? state.currentSong.source : ''} ref={audioRef}></audio>
 			<SongList state={state} dispatch={dispatch} audioRef={audioRef} />
 			<ImageBox coverImg={state.currentSong.image} />
