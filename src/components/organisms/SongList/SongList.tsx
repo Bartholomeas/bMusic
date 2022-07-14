@@ -12,7 +12,7 @@ const SongList = ({ state, dispatch, audioRef }: RefReducerPack) => {
 
 	return (
 		<div
-			className={`absolute list-wrapper flex flex-col justify-start items-center gap-3 left-0 bottom-[0]  w-full h-full p-1 bg-primary z-40 rounded-t-md transition-transform ease-out duration-300 ${
+			className={`absolute list-wrapper flex flex-col justify-start items-center gap-3 left-0 bottom-[0]  w-full h-full max-h-[650px] p-1 bg-primary overflow-y-scroll z-40 rounded-t-md transition-transform ease-out duration-300 ${
 				state.listOpen ? 'translate-y-0' : 'translate-y-full'
 			}`}>
 			<CloseButton onClick={toggleList} />
