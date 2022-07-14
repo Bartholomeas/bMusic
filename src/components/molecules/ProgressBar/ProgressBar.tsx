@@ -65,7 +65,7 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 	}, [state.songStatus, state.duration, timeData.elapsedTime]);
 
 	return (
-		<div className='flex flex-col h-[120px] w-full'>
+		<div className='flex flex-col h-auto w-full pb-1'>
 			<Timer classContent='self-end' time={state.duration} />
 			<div
 				onClick={e => updateBarProgress(e)}

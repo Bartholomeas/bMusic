@@ -12,7 +12,7 @@ const PlayerBody = () => {
 	const audioRef = useRef<HTMLAudioElement>(null);
 
 	return (
-		<div className='relative app-wrapper flex gap-1 flex-col justify-between items-center px-2 pb-3 pt-2 max-h-screen w-full h-full drop-shadow-standardShadow bg-backgroundSecond rounded-xl overflow-hidden md:max-h-[650px] max-w-sm'>
+		<div className='relative app-wrapper flex gap-1 flex-col justify-center items-center px-2 pb-3 pt-2 w-full h-full drop-shadow-standardShadow bg-backgroundSecond rounded-xl overflow-hidden md:max-h-[650px] max-h-screen max-w-sm'>
 			<audio src={state.currentSong.source ? state.currentSong.source : ''} ref={audioRef}></audio>
 			<SongList state={state} dispatch={dispatch} audioRef={audioRef} />
 			<ImageBox coverImg={state.currentSong.image} />
