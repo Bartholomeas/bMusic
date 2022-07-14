@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ACTIONS } from '../../../hooks/actions';
 import PlayerButton from '../../atoms/PlayerButton/PlayerButton';
-import { RefReducerPack } from '../../../hooks/usePlayerHandler';
+import { RefReducerPack } from '../../../hooks/usePlayer';
 import { FaVolumeUp, FaListUl } from 'react-icons/fa';
 
 const 	OptionsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {

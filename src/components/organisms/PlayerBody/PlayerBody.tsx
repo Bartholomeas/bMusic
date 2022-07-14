@@ -4,7 +4,7 @@ import ButtonsPanel from '../../molecules/ButtonsPanel/ButtonsPanel';
 import InfoBox from '../../molecules/InfoBox/InfoBox';
 import ProgressBar from '../../molecules/ProgressBar/ProgressBar';
 import OptionsPanel from '../OptionsPanel/OptionsPanel';
-import { usePlayerHandler } from '../../../hooks/usePlayerHandler';
+import { usePlayerHandler } from '../../../hooks/usePlayer';
 import SongList from '../SongList/SongList';
 
 const PlayerBody = () => {

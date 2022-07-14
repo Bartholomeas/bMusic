@@ -1,5 +1,4 @@
 import { FaPlay, FaPause } from 'react-icons/fa';
-import { SongState } from '../../../hooks/usePlayerHandler';
 
 const ListPlayButton = ({ isPlaying, reducerFunction }: { isPlaying: boolean; reducerFunction: () => any }) => {
 	return (

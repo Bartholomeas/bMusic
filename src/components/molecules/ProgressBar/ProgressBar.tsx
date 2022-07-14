@@ -1,68 +1,77 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Timer from '../../atoms/Timer/Timer';
-import { usePlayerHandler, RefReducerPack } from '../../../hooks/usePlayerHandler';
-import { ACTIONS } from '../../../hooks/actions';
-
-export interface SongTime {
-	elapsedTime: number;
-}
-const initialState: SongTime = {
-	elapsedTime: 0,
-};
+import { RefReducerPack } from '../../../hooks/usePlayer';
+import { useSongSwitcher, SwitchMode } from '../../../hooks/useSongSwitcher';
 
 const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
-	const [timeData, setTimeData] = useState<SongTime>(initialState);
-	const [barProgress, setBarProgress] = useState<number>(0);
+	const { elapsedTime, setElapsedTime, barProgress, setBarProgress, switchSong } = useSongSwitcher({
+		audioRef,
+		state,
+		dispatch,
+	});
+
+	// const switchSong = useCallback((mode: SwitchMode): void => {
+	// 	if (mode === SwitchMode.NEXT) {
+	// 		dispatch({ type: ACTIONS.NEXT_SONG });
+	// 	} else if (mode === SwitchMode.PREVIOUS) {
+	// 		dispatch({ type: ACTIONS.PREV_SONG });
+	// 	}
+
+	// 	if (state.songStatus) {
+	// 		console.log('gra ');
+	// 		setTimeout(() => {
+	// 			audioRef.current?.play();
+	// 			setElapsedTime(0);
+	// 		}, 100);
+	// 	}
+	// }, []);
 
 	useEffect(() => {
+		if (state.songStatus) console.log('widzistatus');
 		window.addEventListener('keydown', e => {
 			if (e.code === 'ArrowRight') {
-				dispatch({ type: ACTIONS.NEXT_SONG });
-				setTimeout(() => {
-					audioRef.current?.play();
-				}, 100);
-				setTimeData({ elapsedTime: 0 });
+				switchSong(SwitchMode.NEXT);
 			} else if (e.code === 'ArrowLeft') {
-				dispatch({ type: ACTIONS.PREV_SONG });
-				setTimeout(() => {
-					audioRef.current?.play();
-				}, 100);
-				setTimeData({ elapsedTime: 0 });
+				switchSong(SwitchMode.PREVIOUS);
 			}
 		});
-	}, []);
-
-	function updateBarProgress(e: any) {
-		let barTargetPercent = Math.floor((e.nativeEvent.offsetX / e.target.closest('div').offsetWidth) * 100);
-		setBarProgress(barTargetPercent);
-
-		countTime();
-		setTimeData({ elapsedTime: Math.floor(state.duration * (barTargetPercent / 100)) });
-		if (audioRef.current) audioRef.current!.currentTime = Math.floor(state.duration * (barTargetPercent / 100));
-	}
-
-	function switchSong(): void {
-		dispatch({ type: ACTIONS.NEXT_SONG });
-		setTimeout(() => {
-			audioRef.current?.play();
-		}, 100);
-		setTimeData({ elapsedTime: 0 });
-	}
-
-	function countTime() {
-		if (audioRef.current && state.songStatus) setTimeData({ elapsedTime: Math.floor(audioRef.current!.currentTime) });
-		setBarProgress((timeData.elapsedTime! / state.duration) * 100);
-		if (timeData.elapsedTime >= state.duration && timeData.elapsedTime > 10) {
-			switchSong();
-		}
-	}
+	}, [switchSong, state.songStatus]);
 
 	let intervalId: NodeJS.Timer;
 	useEffect(() => {
 		intervalId = setInterval(countTime, 200);
 		if (!state.songStatus) clearInterval(intervalId);
 		return () => clearInterval(intervalId);
-	}, [state.songStatus, state.duration, timeData.elapsedTime]);
+	}, [state.songStatus, state.duration, elapsedTime]);
+
+	function updateBarProgress(e: any) {
+		let barTargetPercent = Math.floor((e.nativeEvent.offsetX / e.target.closest('div').offsetWidth) * 100);
+		setBarProgress(barTargetPercent);
+		countTime();
+		setElapsedTime(Math.floor(state.duration * (barTargetPercent / 100)));
+		if (audioRef.current) audioRef.current!.currentTime = Math.floor(state.duration * (barTargetPercent / 100));
+	}
+
+	function countTime() {
+		if (audioRef.current && state.songStatus) setElapsedTime(Math.floor(audioRef.current!.currentTime));
+		setBarProgress((elapsedTime! / state.duration) * 100);
+		if (elapsedTime >= state.duration && elapsedTime > 10) {
+			switchSong(SwitchMode.NEXT);
+		}
+	}
+
+	// function switchSong(mode: SwitchMode): void {
+	// 	if (mode === SwitchMode.NEXT) {
+	// 		dispatch({ type: ACTIONS.NEXT_SONG });
+	// 	} else if (mode === SwitchMode.PREVIOUS) {
+	// 		dispatch({ type: ACTIONS.PREV_SONG });
+	// 	}
+
+	// 	setTimeout(() => {
+	// 		audioRef.current?.play();
+	// 		setElapsedTime(0);
+	// 	}, 100);
+	// }
 
 	return (
 		<div className='flex flex-col h-auto w-full pb-1'>
@@ -74,7 +83,7 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 				<span style={{ width: `${barProgress}%` }} className={`h-full  absolute left-[1px] rounded-full bg-primary`}>
 					<Timer
 						classContent={`absolute top-[10px] right-0 ${barProgress > 50 ? 'translate-x-[0]' : 'translate-x-[100%]'} `}
-						time={timeData.elapsedTime!}
+						time={elapsedTime!}
 					/>
 				</span>
 			</div>

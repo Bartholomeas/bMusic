@@ -59,7 +59,6 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			if (state.isRandom) {
 				do {
 					generateRandom();
-					console.log(randomNumber, state.id);
 				} while (state.songIndex === randomNumber);
 				if (state.songIndex !== randomNumber) {
 					return {

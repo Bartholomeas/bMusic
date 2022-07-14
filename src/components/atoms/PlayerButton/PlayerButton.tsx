@@ -1,4 +1,4 @@
-import { SongState } from '../../../hooks/usePlayerHandler';
+import { SongState } from '../../../hooks/usePlayer';
 import styles from './PlayerButton.module.css';
 
 const PlayerButton: React.FC<{

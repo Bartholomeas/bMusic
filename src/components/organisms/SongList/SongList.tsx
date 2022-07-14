@@ -1,4 +1,4 @@
-import { RefReducerPack } from '../../../hooks/usePlayerHandler';
+import { RefReducerPack } from '../../../hooks/usePlayer';
 import SongCard from '../../molecules/SongCard/SongCard';
 import CloseButton from '../../atoms/CloseButton/CloseButton';
 import CardWrapper from '../../molecules/CardWrapper/CardWrapper';

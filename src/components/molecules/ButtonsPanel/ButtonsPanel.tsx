@@ -1,7 +1,7 @@
 import { ACTIONS } from '../../../hooks/actions';
 import PlayButton from '../../atoms/PlayButton/PlayButton';
 import PlayerButton from '../../atoms/PlayerButton/PlayerButton';
-import { RefReducerPack } from '../../../hooks/usePlayerHandler';
+import { RefReducerPack } from '../../../hooks/usePlayer';
 import { FaAngleLeft, FaAngleRight, FaRandom, FaExchangeAlt } from 'react-icons/fa';
 
 const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {

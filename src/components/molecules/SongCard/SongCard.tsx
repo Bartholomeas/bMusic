@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ACTIONS } from '../../../hooks/actions';
-import { RefReducerPack } from '../../../hooks/usePlayerHandler';
+import { RefReducerPack } from '../../../hooks/usePlayer';
 import ListPlayButton from '../../atoms/ListPlayButton/ListPlayButton';
 
 type CardProps = RefReducerPack & {

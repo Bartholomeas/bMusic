@@ -1,5 +1,5 @@
 import React from 'react';
-import { SongState } from '../../../hooks/usePlayerHandler';
+import { SongState } from '../../../hooks/usePlayer';
 import { FaPlay, FaPause } from 'react-icons/fa';
 
 const PlayButton = ({ state, reducerFunction }: { state: SongState; reducerFunction: () => any }) => {
