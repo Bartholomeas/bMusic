@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/bMusic/static/css/main.fb45db54.css",
-    "main.js": "/bMusic/static/js/main.16b62c8f.js",
+    "main.js": "/bMusic/static/js/main.ab013321.js",
     "static/media/diehard.mp3": "/bMusic/static/media/diehard.1066bfe894775300d39a.mp3",
     "static/media/ayotechnology.mp3": "/bMusic/static/media/ayotechnology.0535979b4ce907d42755.mp3",
     "static/media/selfcontrol.mp3": "/bMusic/static/media/selfcontrol.2893b102591eb9cf0b46.mp3",
@@ -16,10 +16,10 @@
     "static/media/50cent.jpeg": "/bMusic/static/media/50cent.334a7fa87a36aa8de9b6.jpeg",
     "index.html": "/bMusic/index.html",
     "main.fb45db54.css.map": "/bMusic/static/css/main.fb45db54.css.map",
-    "main.16b62c8f.js.map": "/bMusic/static/js/main.16b62c8f.js.map"
+    "main.ab013321.js.map": "/bMusic/static/js/main.ab013321.js.map"
   },
   "entrypoints": [
     "static/css/main.fb45db54.css",
-    "static/js/main.16b62c8f.js"
+    "static/js/main.ab013321.js"
   ]
 }
