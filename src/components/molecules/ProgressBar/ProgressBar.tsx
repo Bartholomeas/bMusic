@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import Timer from '../../atoms/Timer/Timer';
 import { RefReducerPack } from '../../../hooks/usePlayer';
 import { useSongSwitcher, SwitchMode } from '../../../hooks/useSongSwitcher';
+import { ACTIONS } from '../../../hooks/actions';
 
 const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 	const { elapsedTime, setElapsedTime, barProgress, setBarProgress, switchSong } = useSongSwitcher({
@@ -10,36 +11,22 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 		dispatch,
 	});
 
-	// const switchSong = useCallback((mode: SwitchMode): void => {
-	// 	if (mode === SwitchMode.NEXT) {
-	// 		dispatch({ type: ACTIONS.NEXT_SONG });
-	// 	} else if (mode === SwitchMode.PREVIOUS) {
-	// 		dispatch({ type: ACTIONS.PREV_SONG });
-	// 	}
-
-	// 	if (state.songStatus) {
-	// 		console.log('gra ');
-	// 		setTimeout(() => {
-	// 			audioRef.current?.play();
-	// 			setElapsedTime(0);
-	// 		}, 100);
-	// 	}
-	// }, []);
-
+	// console.log(state.songStatus, state.songIndex);
 	useEffect(() => {
-		if (state.songStatus) console.log('widzistatus');
-		window.addEventListener('keydown', e => {
+		function listenerHandler(e: KeyboardEvent) {
 			if (e.code === 'ArrowRight') {
 				switchSong(SwitchMode.NEXT);
 			} else if (e.code === 'ArrowLeft') {
 				switchSong(SwitchMode.PREVIOUS);
 			}
-		});
-	}, [switchSong, state.songStatus]);
+		}
+		window.addEventListener('keydown', listenerHandler);
 
-	let intervalId: NodeJS.Timer;
+		return () => window.removeEventListener('keydown', listenerHandler);
+	}, [state.songStatus]);
+
 	useEffect(() => {
-		intervalId = setInterval(countTime, 200);
+		const intervalId: NodeJS.Timer = setInterval(countTime, 200);
 		if (!state.songStatus) clearInterval(intervalId);
 		return () => clearInterval(intervalId);
 	}, [state.songStatus, state.duration, elapsedTime]);
@@ -59,19 +46,6 @@ const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
 			switchSong(SwitchMode.NEXT);
 		}
 	}
-
-	// function switchSong(mode: SwitchMode): void {
-	// 	if (mode === SwitchMode.NEXT) {
-	// 		dispatch({ type: ACTIONS.NEXT_SONG });
-	// 	} else if (mode === SwitchMode.PREVIOUS) {
-	// 		dispatch({ type: ACTIONS.PREV_SONG });
-	// 	}
-
-	// 	setTimeout(() => {
-	// 		audioRef.current?.play();
-	// 		setElapsedTime(0);
-	// 	}, 100);
-	// }
 
 	return (
 		<div className='flex flex-col h-auto w-full pb-1'>
