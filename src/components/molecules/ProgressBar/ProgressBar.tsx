@@ -1,21 +1,19 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import Timer from '../../atoms/Timer/Timer';
-import { RefReducerPack } from '../../../hooks/usePlayer';
+import { ReducerInterface } from '../../../hooks/usePlayer';
 import { useSongSwitcher, SwitchMode } from '../../../hooks/useSongSwitcher';
-import { ACTIONS } from '../../../hooks/actions';
 
-const ProgressBar = ({ audioRef, state, dispatch }: RefReducerPack) => {
+const ProgressBar = ({ audioRef, state, dispatch }: ReducerInterface) => {
 	const { elapsedTime, setElapsedTime, barProgress, setBarProgress, switchSong } = useSongSwitcher({
 		audioRef,
 		state,
 		dispatch,
 	});
 
-	// console.log(state.songStatus, state.songIndex);
 	useEffect(() => {
 		function listenerHandler(e: KeyboardEvent) {
 			if (e.code === 'ArrowRight') {
-				switchSong(SwitchMode.NEXT);
+				switchSong(SwitchMode.NEXT, true);
 			} else if (e.code === 'ArrowLeft') {
 				switchSong(SwitchMode.PREVIOUS);
 			}

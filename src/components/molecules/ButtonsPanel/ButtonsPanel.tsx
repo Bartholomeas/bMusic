@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
 import { ACTIONS } from '../../../hooks/actions';
 import PlayButton from '../../atoms/PlayButton/PlayButton';
 import PlayerButton from '../../atoms/PlayerButton/PlayerButton';
-import { RefReducerPack } from '../../../hooks/usePlayer';
+import { ReducerInterface } from '../../../hooks/usePlayer';
 import { FaAngleLeft, FaAngleRight, FaRandom, FaExchangeAlt } from 'react-icons/fa';
+import { useSongSwitcher, SwitchMode } from '../../../hooks/useSongSwitcher';
 
-const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
+const ButtonsPanel = ({ state, dispatch, audioRef }: ReducerInterface) => {
+	const { switchSong } = useSongSwitcher({ state, dispatch, audioRef });
+
 	function toggleSong() {
 		dispatch({ type: ACTIONS.TOGGLE_SONG });
 		if (!state.songStatus) {
@@ -14,21 +16,6 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 			audioRef.current?.pause();
 		}
 		return;
-	}
-
-	function nextSong() {
-		dispatch({ type: ACTIONS.NEXT_SONG, payload: true });
-		setTimeout(() => {
-			if (state.songStatus) {
-				audioRef.current!.play();
-			}
-		}, 100);
-	}
-	function prevSong() {
-		dispatch({ type: ACTIONS.PREV_SONG, payload: true });
-		setTimeout(() => {
-			if (state.songStatus) audioRef.current!.play();
-		}, 100);
 	}
 
 	function loopSong() {
@@ -44,14 +31,14 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
 			<div className='flex justify-between items-center w-full'>
 				<PlayerButton
 					reducerFunction={() => setRandom()}
-					additionalClass={`loop ${state.isRandom ? 'fill-primary' : 'fill-coreGrey'}`}
+					additionalClass={` ${state.isRandom ? 'fill-primary' : 'fill-coreGrey'}`}
 					BtnType={FaRandom}
 				/>
-				<PlayerButton reducerFunction={() => prevSong()} BtnType={FaAngleLeft} />
+				<PlayerButton reducerFunction={() => switchSong(SwitchMode.NEXT, true)} BtnType={FaAngleLeft} />
 				<PlayButton state={state} reducerFunction={() => toggleSong()} />
-				<PlayerButton state={state} reducerFunction={() => nextSong()} BtnType={FaAngleRight} />
+				<PlayerButton reducerFunction={() => switchSong(SwitchMode.NEXT, true)} BtnType={FaAngleRight} />
 				<PlayerButton
-					additionalClass={`loop ${state.onLoop ? 'fill-primary' : 'fill-coreGrey'}`}
+					additionalClass={` ${state.onLoop ? 'fill-primary' : 'fill-coreGrey'}`}
 					reducerFunction={() => loopSong()}
 					BtnType={FaExchangeAlt}
 				/>

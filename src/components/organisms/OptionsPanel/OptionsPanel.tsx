@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { ACTIONS } from '../../../hooks/actions';
 import PlayerButton from '../../atoms/PlayerButton/PlayerButton';
-import { RefReducerPack } from '../../../hooks/usePlayer';
+import { ReducerInterface } from '../../../hooks/usePlayer';
 import { FaVolumeUp, FaListUl } from 'react-icons/fa';
 
-const 	OptionsPanel = ({ state, dispatch, audioRef }: RefReducerPack) => {
+const OptionsPanel = ({ state, dispatch, audioRef }: ReducerInterface) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	function toggleVolume() {

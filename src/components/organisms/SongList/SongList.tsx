@@ -1,11 +1,11 @@
-import { RefReducerPack } from '../../../hooks/usePlayer';
+import { ReducerInterface } from '../../../hooks/usePlayer';
 import SongCard from '../../molecules/SongCard/SongCard';
 import CloseButton from '../../atoms/CloseButton/CloseButton';
 import CardWrapper from '../../molecules/CardWrapper/CardWrapper';
 import { songs } from '../../../songs';
 import { ACTIONS } from '../../../hooks/actions';
 
-const SongList = ({ state, dispatch, audioRef }: RefReducerPack) => {
+const SongList = ({ state, dispatch, audioRef }: ReducerInterface) => {
 	function toggleList(): void {
 		dispatch({ type: ACTIONS.OPEN_LIST });
 	}

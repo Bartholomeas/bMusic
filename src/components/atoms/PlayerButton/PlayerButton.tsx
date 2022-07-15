@@ -1,14 +1,20 @@
-import { SongState } from '../../../hooks/usePlayer';
 import styles from './PlayerButton.module.css';
 
-const PlayerButton: React.FC<{
-	state?: SongState;
+interface ButtonInterface {
 	BtnType: any;
 	reducerFunction?: () => any;
 	additionalFunction?: (e: any) => void;
 	additionalClass?: string;
 	isOpen?: boolean;
-}> = ({ BtnType, state, reducerFunction, additionalFunction, additionalClass, isOpen = false }) => {
+}
+
+const PlayerButton = ({
+	BtnType,
+	reducerFunction,
+	additionalFunction,
+	additionalClass,
+	isOpen = false,
+}: ButtonInterface) => {
 	return (
 		<>
 			<button onClick={reducerFunction} className={`p-1 transition-transform ease hover:scale-90 `}>

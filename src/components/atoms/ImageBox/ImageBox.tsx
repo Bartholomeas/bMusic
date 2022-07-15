@@ -1,4 +1,3 @@
-import React from 'react';
 import img from '../../../assets/images/kendrick.jpeg';
 
 const ImageBox = ({ coverImg = img }: { coverImg: string }) => {

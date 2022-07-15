@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { ACTIONS } from './actions';
-import { RefReducerPack } from './usePlayer';
+import { ReducerInterface } from './usePlayer';
 
 const initialState: number = 0;
 
@@ -14,27 +14,30 @@ interface HookParameters {
 	setElapsedTime: (arg0: number) => void;
 	barProgress: number;
 	setBarProgress: (arg0: number) => void;
-	switchSong: (arg0: SwitchMode) => void;
-	// switchSong: (arg0: SwitchMode, arg1: boolean) => void;
+	switchSong: (arg0: SwitchMode, arg1?: boolean) => void;
 }
 
-export function useSongSwitcher({ audioRef, state, dispatch }: RefReducerPack): HookParameters {
+export function useSongSwitcher({ audioRef, state, dispatch }: ReducerInterface): HookParameters {
 	const [elapsedTime, setElapsedTime] = useState<number>(initialState);
 	const [barProgress, setBarProgress] = useState<number>(0);
 
 	const switchSong = useCallback(
-		(mode: SwitchMode): void => {
+		(mode: SwitchMode, payload: boolean = false): void => {
 			if (mode === SwitchMode.NEXT) {
+				if (payload) dispatch({ type: ACTIONS.NEXT_SONG, payload: payload });
+
 				dispatch({ type: ACTIONS.NEXT_SONG });
 			} else if (mode === SwitchMode.PREVIOUS) {
+				if (payload) dispatch({ type: ACTIONS.NEXT_SONG, payload: payload });
 				dispatch({ type: ACTIONS.PREV_SONG });
 			}
 			if (state.songStatus) {
 				setTimeout(() => {
 					audioRef.current!.play();
-					setElapsedTime(0);
 				}, 100);
 			}
+			setElapsedTime(0);
+			setBarProgress(0);
 		},
 		[state.songStatus]
 	);

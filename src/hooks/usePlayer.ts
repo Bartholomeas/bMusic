@@ -2,7 +2,7 @@ import { useReducer, RefObject } from 'react';
 import { ACTIONS } from './actions';
 import { songs, SongInterface } from '../songs';
 
-export interface RefReducerPack {
+export interface ReducerInterface {
 	state: SongState;
 	dispatch: React.Dispatch<any>;
 	audioRef: RefObject<HTMLAudioElement>;
@@ -10,7 +10,6 @@ export interface RefReducerPack {
 export interface SongState {
 	songStatus: boolean;
 	songIndex: number;
-	id: number;
 	volume: number;
 	currentSong: SongInterface;
 	duration: number;
@@ -26,7 +25,6 @@ interface SongAction {
 const initialState: SongState = {
 	songStatus: false,
 	songIndex: 0,
-	id: songs[0].id,
 	volume: 1,
 	currentSong: songs[0],
 	duration: songs[0].duration,
@@ -48,7 +46,6 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					...state,
 					songStatus: true,
 					songIndex: parseInt(action.payload),
-					id: parseInt(action.payload),
 					volume: 1,
 					currentSong: songs[parseInt(action.payload)],
 				};
@@ -63,7 +60,6 @@ function songStatusReducer(state: SongState, action: SongAction) {
 				if (state.songIndex !== randomNumber) {
 					return {
 						...state,
-						id: randomNumber,
 						songIndex: randomNumber,
 						volume: 1,
 						currentSong: songs[randomNumber],
@@ -74,7 +70,6 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			if (state.onLoop && !action.payload) {
 				return {
 					...state,
-					id: songs[state.songIndex].id,
 					volume: 1,
 					currentSong: songs[state.songIndex],
 					duration: songs[state.songIndex].duration,
@@ -85,7 +80,6 @@ function songStatusReducer(state: SongState, action: SongAction) {
 				return {
 					...state,
 					songIndex: 0,
-					id: songs[0].id,
 					volume: 1,
 					duration: songs[0].duration,
 					currentSong: songs[0],
@@ -94,7 +88,6 @@ function songStatusReducer(state: SongState, action: SongAction) {
 				return {
 					...state,
 					songIndex: state.songIndex + 1,
-					id: songs[state.songIndex + 1].id,
 					volume: 1,
 					currentSong: songs[state.songIndex + 1],
 					duration: songs[state.songIndex + 1].duration,
@@ -105,7 +98,6 @@ function songStatusReducer(state: SongState, action: SongAction) {
 			if (state.onLoop && !action.payload) {
 				return {
 					...state,
-					id: songs[state.songIndex].id,
 					volume: 1,
 					currentSong: songs[state.songIndex],
 					duration: songs[state.songIndex].duration,
@@ -116,7 +108,6 @@ function songStatusReducer(state: SongState, action: SongAction) {
 				return {
 					...state,
 					songIndex: songs.length - 1,
-					id: songs[songs.length - 1].id,
 					volume: 1,
 					currentSong: songs[songs.length - 1],
 					duration: songs[songs.length - 1].duration,
@@ -125,7 +116,6 @@ function songStatusReducer(state: SongState, action: SongAction) {
 				return {
 					...state,
 					songIndex: state.songIndex - 1,
-					id: songs[state.songIndex - 1].id,
 					volume: 1,
 					currentSong: songs[state.songIndex - 1],
 					duration: songs[state.songIndex - 1].duration,
