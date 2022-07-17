@@ -9,12 +9,12 @@ Music player with features such as:
 - displaying the track list
 
 ## Technologies
--HTML
--CSS
--Javascript
--Typescript
--React(Create React App)
--Tailwind CSS
+- HTML
+- CSS
+- Javascript
+- Typescript
+- React(Create React App)
+- Tailwind CSS
 
 	
 ## Additional infos
