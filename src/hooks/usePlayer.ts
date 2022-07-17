@@ -1,25 +1,25 @@
-import { useReducer, RefObject } from 'react';
-import { ACTIONS } from './actions';
-import { songs, SongInterface } from '../songs';
+import { useReducer, RefObject } from 'react'
+import { ACTIONS } from './actions'
+import { songs, SongInterface } from '../songs'
 
 export interface ReducerInterface {
-	state: SongState;
-	dispatch: React.Dispatch<any>;
-	audioRef: RefObject<HTMLAudioElement>;
+	state: SongState
+	dispatch: React.Dispatch<any>
+	audioRef: RefObject<HTMLAudioElement>
 }
 export interface SongState {
-	songStatus: boolean;
-	songIndex: number;
-	volume: number;
-	currentSong: SongInterface;
-	duration: number;
-	onLoop: boolean;
-	isRandom: boolean;
-	listOpen: boolean;
+	songStatus: boolean
+	songIndex: number
+	volume: number
+	currentSong: SongInterface
+	duration: number
+	onLoop: boolean
+	isRandom: boolean
+	listOpen: boolean
 }
 interface SongAction {
-	type: string;
-	payload?: any;
+	type: string
+	payload?: any
 }
 
 const initialState: SongState = {
@@ -31,11 +31,11 @@ const initialState: SongState = {
 	onLoop: false,
 	isRandom: false,
 	listOpen: false,
-};
+}
 
-let randomNumber: number;
+let randomNumber: number
 function generateRandom(): number {
-	return (randomNumber = Math.floor(Math.random() * songs.length));
+	return (randomNumber = Math.floor(Math.random() * songs.length))
 }
 
 function songStatusReducer(state: SongState, action: SongAction) {
@@ -48,15 +48,16 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					songIndex: parseInt(action.payload),
 					volume: 1,
 					currentSong: songs[parseInt(action.payload)],
-				};
+					duration: songs[parseInt(action.payload)].duration,
+				}
 			}
-			return { ...state, songStatus: !state.songStatus };
+			return { ...state, songStatus: !state.songStatus }
 
 		case ACTIONS.NEXT_SONG:
 			if (state.isRandom) {
 				do {
-					generateRandom();
-				} while (state.songIndex === randomNumber);
+					generateRandom()
+				} while (state.songIndex === randomNumber)
 				if (state.songIndex !== randomNumber) {
 					return {
 						...state,
@@ -64,90 +65,67 @@ function songStatusReducer(state: SongState, action: SongAction) {
 						volume: 1,
 						currentSong: songs[randomNumber],
 						duration: songs[randomNumber].duration,
-					};
+					}
 				}
 			} else if (state.onLoop && action.payload === true) {
-				// if (state.onLoop) {
-				console.log('next na lupie');
-
 				return {
 					...state,
 					onLoop: action.payload,
-					// currentSong: songs[state.songIndex],
-					// duration: songs[state.songIndex].duration,
-				};
+				}
 			} else if (state.songIndex >= songs.length - 1) {
-				console.log('next koniec kolejki');
-
 				return {
 					...state,
 					songIndex: 0,
 					volume: 1,
 					duration: songs[0].duration,
 					currentSong: songs[0],
-				};
+				}
 			}
-			// console.log('zwykly');
 			return {
 				...state,
 				songIndex: state.songIndex + 1,
 				volume: 1,
 				currentSong: songs[state.songIndex + 1],
 				duration: songs[state.songIndex + 1].duration,
-			};
+			}
 
 		case ACTIONS.PREV_SONG:
-			// console.log(state.onLoop);
-			// if (state.onLoop && action.payload) {
-			// 	console.log('previous z na lupie');
-
-			// 	return {
-			// 		...state,
-			// 		volume: 1,
-			// 		currentSong: songs[state.songIndex],
-			// 		duration: songs[state.songIndex].duration,
-			// 	};
-			// }
-
 			if (state.songIndex === 0) {
-				console.log('previous z indexem 0');
-
 				return {
 					...state,
 					songIndex: songs.length - 1,
 					volume: 1,
 					currentSong: songs[songs.length - 1],
 					duration: songs[songs.length - 1].duration,
-				};
+				}
 			} else {
-				console.log('previous zwykle');
 				return {
 					...state,
 					songIndex: state.songIndex - 1,
 					volume: 1,
 					currentSong: songs[state.songIndex - 1],
 					duration: songs[state.songIndex - 1].duration,
-				};
+				}
 			}
 		case ACTIONS.LOOP_SONG:
-			return { ...state, onLoop: !state.onLoop };
+			return { ...state, onLoop: !state.onLoop }
 
 		case ACTIONS.RANDOM_SONG:
-			return { ...state, isRandom: !state.isRandom };
+			return { ...state, isRandom: !state.isRandom }
 
 		case ACTIONS.CHANGE_VOLUME:
-			return { ...state, volume: action.payload };
+			return { ...state, volume: action.payload }
 
 		case ACTIONS.OPEN_LIST:
-			return { ...state, listOpen: !state.listOpen };
+			return { ...state, listOpen: !state.listOpen }
 
 		default:
-			throw new Error('ERROR');
+			throw new Error('ERROR')
 	}
 }
 
 export function usePlayerHandler() {
-	const [state, dispatch] = useReducer(songStatusReducer, initialState);
+	const [state, dispatch] = useReducer(songStatusReducer, initialState)
 
-	return { state, dispatch };
+	return { state, dispatch }
 }

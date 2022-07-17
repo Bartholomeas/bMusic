@@ -1,29 +1,29 @@
-import { ACTIONS } from '../../../hooks/actions';
-import PlayButton from '../../atoms/PlayButton/PlayButton';
-import PlayerButton from '../../atoms/PlayerButton/PlayerButton';
-import { ReducerInterface } from '../../../hooks/usePlayer';
-import { FaAngleLeft, FaAngleRight, FaRandom, FaExchangeAlt } from 'react-icons/fa';
-import { useSongSwitcher, SwitchMode } from '../../../hooks/useSongSwitcher';
+import { ACTIONS } from '../../../hooks/actions'
+import PlayButton from '../../atoms/PlayButton/PlayButton'
+import PlayerButton from '../../atoms/PlayerButton/PlayerButton'
+import { ReducerInterface } from '../../../hooks/usePlayer'
+import { FaAngleLeft, FaAngleRight, FaRandom, FaExchangeAlt } from 'react-icons/fa'
+import { useSongSwitcher, SwitchMode } from '../../../hooks/useSongSwitcher'
 
 const ButtonsPanel = ({ state, dispatch, audioRef }: ReducerInterface) => {
-	const { switchSong } = useSongSwitcher({ state, dispatch, audioRef });
+	const { switchSong } = useSongSwitcher({ state, dispatch, audioRef })
 
 	function toggleSong() {
-		dispatch({ type: ACTIONS.TOGGLE_SONG });
+		dispatch({ type: ACTIONS.TOGGLE_SONG })
 		if (!state.songStatus) {
-			audioRef.current?.play();
+			audioRef.current?.play()
 		} else {
-			audioRef.current?.pause();
+			audioRef.current?.pause()
 		}
-		return;
+		return
 	}
 
-	function loopSong() {
-		dispatch({ type: ACTIONS.LOOP_SONG });
+	function setLoop() {
+		dispatch({ type: ACTIONS.LOOP_SONG })
 	}
 
 	function setRandom() {
-		dispatch({ type: ACTIONS.RANDOM_SONG });
+		dispatch({ type: ACTIONS.RANDOM_SONG })
 	}
 
 	return (
@@ -39,12 +39,12 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: ReducerInterface) => {
 				<PlayerButton reducerFunction={() => switchSong(SwitchMode.NEXT)} BtnType={FaAngleRight} />
 				<PlayerButton
 					additionalClass={` ${state.onLoop ? 'fill-primary' : 'fill-coreGrey'}`}
-					reducerFunction={() => loopSong()}
+					reducerFunction={() => setLoop()}
 					BtnType={FaExchangeAlt}
 				/>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default ButtonsPanel;
+export default ButtonsPanel
