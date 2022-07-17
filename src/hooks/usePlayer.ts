@@ -72,10 +72,9 @@ function songStatusReducer(state: SongState, action: SongAction) {
 
 				return {
 					...state,
-					volume: 1,
 					onLoop: action.payload,
-					currentSong: songs[state.songIndex],
-					duration: songs[state.songIndex].duration,
+					// currentSong: songs[state.songIndex],
+					// duration: songs[state.songIndex].duration,
 				};
 			} else if (state.songIndex >= songs.length - 1) {
 				console.log('next koniec kolejki');

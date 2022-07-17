@@ -20,28 +20,30 @@ interface HookParameters {
 export function useSongSwitcher({ audioRef, state, dispatch }: ReducerInterface): HookParameters {
 	const [elapsedTime, setElapsedTime] = useState<number>(initialState);
 	const [barProgress, setBarProgress] = useState<number>(0);
-	console.log(state);
 	const switchSong = useCallback(
 		(mode: SwitchMode, payload: boolean = false): void => {
 			if (mode === SwitchMode.NEXT) {
-				if (payload) dispatch({ type: ACTIONS.NEXT_SONG, payload: payload });
-
-				dispatch({ type: ACTIONS.NEXT_SONG });
+				if (payload) {
+					// console.log('z pejloadem');
+					dispatch({ type: ACTIONS.NEXT_SONG, payload: payload });
+				} else {
+					console.log('przeszlo dalej');
+					dispatch({ type: ACTIONS.NEXT_SONG });
+				}
 			} else if (mode === SwitchMode.PREVIOUS) {
-				if (payload) dispatch({ type: ACTIONS.NEXT_SONG, payload: payload });
 				dispatch({ type: ACTIONS.PREV_SONG });
 			}
 			console.log('state przed timeout', state);
 			if (state.songStatus) {
 				setTimeout(() => {
+					// console.log('first');
 					audioRef.current!.play();
-					console.log('state PO timeout', state);
 				}, 100);
 			}
-			setElapsedTime(0);
-			setBarProgress(0);
+			// setElapsedTime(0);
+			// setBarProgress(0);
 		},
-		[state.songStatus]
+		[audioRef, state, dispatch]
 	);
 	return { elapsedTime, setElapsedTime, barProgress, setBarProgress, switchSong };
 }
