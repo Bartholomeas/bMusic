@@ -66,17 +66,20 @@ function songStatusReducer(state: SongState, action: SongAction) {
 						duration: songs[randomNumber].duration,
 					};
 				}
-			}
-			if (state.onLoop && !action.payload) {
+			} else if (state.onLoop && action.payload === true) {
+				// if (state.onLoop) {
+				console.log('next na lupie');
+
 				return {
 					...state,
 					volume: 1,
+					onLoop: action.payload,
 					currentSong: songs[state.songIndex],
 					duration: songs[state.songIndex].duration,
 				};
-			}
+			} else if (state.songIndex >= songs.length - 1) {
+				console.log('next koniec kolejki');
 
-			if (state.songIndex >= songs.length - 1) {
 				return {
 					...state,
 					songIndex: 0,
@@ -84,27 +87,32 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					duration: songs[0].duration,
 					currentSong: songs[0],
 				};
-			} else {
-				return {
-					...state,
-					songIndex: state.songIndex + 1,
-					volume: 1,
-					currentSong: songs[state.songIndex + 1],
-					duration: songs[state.songIndex + 1].duration,
-				};
 			}
+			// console.log('zwykly');
+			return {
+				...state,
+				songIndex: state.songIndex + 1,
+				volume: 1,
+				currentSong: songs[state.songIndex + 1],
+				duration: songs[state.songIndex + 1].duration,
+			};
 
 		case ACTIONS.PREV_SONG:
-			if (state.onLoop && !action.payload) {
-				return {
-					...state,
-					volume: 1,
-					currentSong: songs[state.songIndex],
-					duration: songs[state.songIndex].duration,
-				};
-			}
+			// console.log(state.onLoop);
+			// if (state.onLoop && action.payload) {
+			// 	console.log('previous z na lupie');
+
+			// 	return {
+			// 		...state,
+			// 		volume: 1,
+			// 		currentSong: songs[state.songIndex],
+			// 		duration: songs[state.songIndex].duration,
+			// 	};
+			// }
 
 			if (state.songIndex === 0) {
+				console.log('previous z indexem 0');
+
 				return {
 					...state,
 					songIndex: songs.length - 1,
@@ -113,6 +121,7 @@ function songStatusReducer(state: SongState, action: SongAction) {
 					duration: songs[songs.length - 1].duration,
 				};
 			} else {
+				console.log('previous zwykle');
 				return {
 					...state,
 					songIndex: state.songIndex - 1,

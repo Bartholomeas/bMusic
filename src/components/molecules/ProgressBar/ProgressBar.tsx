@@ -13,13 +13,12 @@ const ProgressBar = ({ audioRef, state, dispatch }: ReducerInterface) => {
 	useEffect(() => {
 		function listenerHandler(e: KeyboardEvent) {
 			if (e.code === 'ArrowRight') {
-				switchSong(SwitchMode.NEXT, true);
+				switchSong(SwitchMode.NEXT);
 			} else if (e.code === 'ArrowLeft') {
 				switchSong(SwitchMode.PREVIOUS);
 			}
 		}
 		window.addEventListener('keydown', listenerHandler);
-
 		return () => window.removeEventListener('keydown', listenerHandler);
 	}, [state.songStatus]);
 
@@ -41,7 +40,7 @@ const ProgressBar = ({ audioRef, state, dispatch }: ReducerInterface) => {
 		if (audioRef.current && state.songStatus) setElapsedTime(Math.floor(audioRef.current!.currentTime));
 		setBarProgress((elapsedTime! / state.duration) * 100);
 		if (elapsedTime >= state.duration && elapsedTime > 10) {
-			switchSong(SwitchMode.NEXT);
+			switchSong(SwitchMode.NEXT, true);
 		}
 	}
 

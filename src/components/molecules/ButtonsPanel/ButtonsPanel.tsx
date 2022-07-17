@@ -34,9 +34,9 @@ const ButtonsPanel = ({ state, dispatch, audioRef }: ReducerInterface) => {
 					additionalClass={` ${state.isRandom ? 'fill-primary' : 'fill-coreGrey'}`}
 					BtnType={FaRandom}
 				/>
-				<PlayerButton reducerFunction={() => switchSong(SwitchMode.NEXT, true)} BtnType={FaAngleLeft} />
+				<PlayerButton reducerFunction={() => switchSong(SwitchMode.PREVIOUS)} BtnType={FaAngleLeft} />
 				<PlayButton state={state} reducerFunction={() => toggleSong()} />
-				<PlayerButton reducerFunction={() => switchSong(SwitchMode.NEXT, true)} BtnType={FaAngleRight} />
+				<PlayerButton reducerFunction={() => switchSong(SwitchMode.NEXT)} BtnType={FaAngleRight} />
 				<PlayerButton
 					additionalClass={` ${state.onLoop ? 'fill-primary' : 'fill-coreGrey'}`}
 					reducerFunction={() => loopSong()}

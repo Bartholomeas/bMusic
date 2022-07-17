@@ -36,7 +36,7 @@ const SongCard = ({ title, author, songId, dispatch, state, audioRef }: CardProp
 		if (state.songStatus && state.songIndex === songId) {
 			setIsPlaying(true);
 		}
-	}, [state.songStatus, state.songIndex]);
+	}, [state.songStatus, state.songIndex, songId]);
 
 	return (
 		<div className='flex flex-row gap-2 h-5 p-[7px] w-full items-center justify-start rounded-full bg-primaryDark'>
